@@ -1,2 +1,10 @@
-<p-toast></p-toast>
-<router-outlet></router-outlet>
+<p-splitter [panelSizes]="[10,90]" layout="horizontal">
+  <ng-template pTemplate>
+    <p-menu [model]="items"></p-menu>
+  </ng-template>
+  <ng-template pTemplate>
+    <div class="table">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+</p-splitter>
