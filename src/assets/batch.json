@@ -1,0 +1,52 @@
+"data": [
+{
+ "scNumber": 1,
+ "receivedDate": "2012-04-23T18:25:43.511Z" ,
+ "customerId": 1,
+ "supervisitorId": 1,
+ "techlabId": 1,
+ "remarks": "sth",
+ "internalNotes": "sth",
+ "product": {"productId":1}
+},
+{
+"scNumber": 2,
+"receivedDate": "2014-04-23T18:15:43.511Z" ,
+"customerId": 2,
+"supervisitorId": 2,
+"techlabId": 2,
+"remarks": "sth",
+"internalNotes": "sth",
+"product": {"productId":2}
+},
+{
+"scNumber": 3,
+"receivedDate": "2015-04-23T18:26:43.511Z" ,
+"customerId": 3,
+"supervisitorId": 3,
+"techlabId": 3,
+"remarks": "sth",
+"internalNotes": "sth",
+"product": {"productId":3}
+},
+{
+"scNumber": 4,
+"receivedDate": "2022-04-23T18:25:53.511Z" ,
+"customerId": 4,
+"supervisitorId": 4,
+"techlabId": 4,
+"remarks": "sth",
+"internalNotes": "sth",
+"product": {"productId":4}
+},
+{
+"scNumber": 5,
+"receivedDate": "2011-04-23T18:25:33.511Z" ,
+"customerId": 5,
+"supervisitorId": 5,
+"techlabId": 5,
+"remarks": "sth",
+"internalNotes": "sth",
+"product": {"productId":5}
+},
+]

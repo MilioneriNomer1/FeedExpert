@@ -1,0 +1,27 @@
+"data":[
+{
+ "substanceId": 1,
+ "name": "sth",
+"product": {"productId":1}
+},
+{
+"substanceId": 2,
+"name": "sth",
+"product": {"productId":2}
+},
+{
+"substanceId": 3,
+"name": "sth",
+"product": {"productId":3}
+},{
+"substanceId": 4,
+"name": "sth",
+"product": {"productId":4}
+},
+{
+"substanceId": 5,
+"name": "sth",
+"product": {"productId":5}
+},
+
+]

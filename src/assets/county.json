@@ -1,0 +1,32 @@
+"data": [
+{
+  "countyId": 1,
+  "name": "",
+  "code": "FYFYU",
+  "state": {"stateId":1},
+},
+{
+"countyId": 2,
+"name": "",
+"code": "FYUBGU",
+"state": {"stateId":2},
+},
+{
+"countyId": 3,
+"name": "",
+"code": "HFGDYU",
+"state": {"stateId":3},
+},
+{
+"countyId": 4,
+"name": "",
+"code": "FYOJU",
+"state": {"stateId":4},
+},
+{
+"countyId": 5,
+"name": "",
+"code": "FBFFU",
+"state": {"stateId":5},
+},
+]

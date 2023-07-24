@@ -1,0 +1,32 @@
+"data": [
+{
+ "cityId": 1,
+ "name": "Sofia",
+ "code": "EWGT87F",
+ "county": {"countyId":1}
+},
+{
+"cityId": 2,
+"name": "Paris",
+"code": "N6TT87F",
+"county": {"countyId":2}
+},
+{
+"cityId": 3,
+"name": "Dublin",
+"code": "TV5T87F",
+"county": {"countyId":3}
+},
+{
+"cityId": 4,
+"name": "Budapest",
+"code": "EWGКJGY",
+"county": {"countyId":4}
+},
+{
+"cityId": 5,
+"name": "Monaco",
+"code": "EWKG87F",
+"county": {"countyId":5}
+},
+]
