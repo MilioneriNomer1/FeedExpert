@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {Batch} from "./common/Batch";
-import {City} from "./common/City";
-import {Sample} from "./common/Sample";
-import {State} from "./common/State";
-import {Substance} from "./common/Substance";
-import {User} from "./common/User";
-import {Product} from "./common/Product";
-import {Customer} from "./common/Customer";
-import {County} from "./common/County";
+import {BatchComponent} from "./components/batch/batch.component";
+import {CityComponent} from "./components/city/city.component";
+import {CountyComponent} from "./components/county/county.component";
+import {CustomerComponent} from "./components/customer/customer.component";
+import {ProductComponent} from "./components/product/product.component";
+import {SampleComponent} from "./components/sample/sample.component";
+import {StateComponent} from "./components/state/state.component";
+import {SubstanceComponent} from "./components/substance/substance.component";
+import {UserComponent} from "./components/user/user.component";
+
+
 
 const routes: Routes = [
-  { path: 'batch', component: Batch },
-  { path: 'city', component: City },
-  { path: 'county', component: County },
-  { path: 'customer', component: Customer },
-  { path: 'product', component: Product },
-  { path: 'sample', component: Sample },
-  { path: 'state', component: State },
-  { path: 'substance', component: Substance },
-  { path: 'user', component: User },
+  { path: 'batch', component: BatchComponent },
+  { path: 'city', component: CityComponent },
+  { path: 'county', component: CountyComponent },
+  { path: 'customer', component: CustomerComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'sample', component: SampleComponent },
+  { path: 'state', component: StateComponent },
+  { path: 'substance', component: SubstanceComponent },
+  { path: 'user', component: UserComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
