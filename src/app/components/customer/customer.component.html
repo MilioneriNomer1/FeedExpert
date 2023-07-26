@@ -1,22 +1,23 @@
-<!--<p-table [value]="customers" [lazy]="true" (onLazyLoad)="loadCustomers($event)"-->
-<!--         [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">-->
-<!--  <ng-template pTemplate="header">-->
-<!--    <tr>-->
-<!--      <th>Name</th>-->
-<!--      <th>Country</th>-->
-<!--      <th>Company</th>-->
-<!--      <th>Representative</th>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="body" let-customer>-->
-<!--    <tr>-->
-<!--      <td>{{customer.name}}</td>-->
-<!--      <td>{{customer.country.name}}</td>-->
-<!--      <td>{{customer.company}}</td>-->
-<!--      <td>{{customer.representative.name}}</td>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--</p-table>-->
+<!--
+&lt;!&ndash;<p-table [value]="customers" [lazy]="true" (onLazyLoad)="loadCustomers($event)"&ndash;&gt;
+&lt;!&ndash;         [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">&ndash;&gt;
+&lt;!&ndash;  <ng-template pTemplate="header">&ndash;&gt;
+&lt;!&ndash;    <tr>&ndash;&gt;
+&lt;!&ndash;      <th>Name</th>&ndash;&gt;
+&lt;!&ndash;      <th>Country</th>&ndash;&gt;
+&lt;!&ndash;      <th>Company</th>&ndash;&gt;
+&lt;!&ndash;      <th>Representative</th>&ndash;&gt;
+&lt;!&ndash;    </tr>&ndash;&gt;
+&lt;!&ndash;  </ng-template>&ndash;&gt;
+&lt;!&ndash;  <ng-template pTemplate="body" let-customer>&ndash;&gt;
+&lt;!&ndash;    <tr>&ndash;&gt;
+&lt;!&ndash;      <td>{{customer.name}}</td>&ndash;&gt;
+&lt;!&ndash;      <td>{{customer.country.name}}</td>&ndash;&gt;
+&lt;!&ndash;      <td>{{customer.company}}</td>&ndash;&gt;
+&lt;!&ndash;      <td>{{customer.representative.name}}</td>&ndash;&gt;
+&lt;!&ndash;    </tr>&ndash;&gt;
+&lt;!&ndash;  </ng-template>&ndash;&gt;
+&lt;!&ndash;</p-table>&ndash;&gt;
 
 <p-table [value]="customers" [lazy]="true" (onLazyLoad)="loadCustomers($event)" dataKey="id" [tableStyle]="{'min-width': '75rem'}"
          [selection]="selectedCustomers" (selectionChange)="onSelectionChange($event)" [selectAll]="selectAll" (selectAllChange)="onSelectAllChange($event)"
@@ -71,3 +72,4 @@
   </ng-template>
 </p-table>
 
+-->

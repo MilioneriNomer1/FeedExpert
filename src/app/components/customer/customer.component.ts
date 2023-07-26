@@ -71,8 +71,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
-import {Customer, Representative} from "../../common/Customer";
 import {CustomerService} from "../../services/customerservice";
+import {Customer} from "../../common/Customer";
 
 @Component({
   templateUrl: './customer.component.html'
@@ -87,7 +87,6 @@ export class CustomerComponent implements OnInit {
 
   loading: boolean = false;
 
-  representatives: Representative[] = [];
 
   selectAll: boolean = false;
 
@@ -96,19 +95,6 @@ export class CustomerComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.representatives = [
-      {name: "Amy Elsner", image: 'amyelsner.png'},
-      {name: "Anna Fali", image: 'annafali.png'},
-      {name: "Asiya Javayant", image: 'asiyajavayant.png'},
-      {name: "Bernardo Dominic", image: 'bernardodominic.png'},
-      {name: "Elwin Sharvill", image: 'elwinsharvill.png'},
-      {name: "Ioni Bowcher", image: 'ionibowcher.png'},
-      {name: "Ivan Magalhaes",image: 'ivanmagalhaes.png'},
-      {name: "Onyama Limba", image: 'onyamalimba.png'},
-      {name: "Stephen Shaw", image: 'stephenshaw.png'},
-      {name: "Xuxue Feng", image: 'xuxuefeng.png'}
-    ];
-
     this.loading = true;
   }
 

@@ -1,1 +1,36 @@
-<p>state works!</p>
+<p-table
+  [value]="states"
+  [lazy]="true"
+  (onLazyLoad)="loadStates($event)"
+  dataKey="id"
+  [tableStyle]="{'min-width': '75rem'}"
+  [paginator]="true"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [loading]="loading">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">State Id<p-sortIcon field="stateId"></p-sortIcon></th>
+      <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
+      <th pSortableColumn="name">Code<p-sortIcon field="code"></p-sortIcon></th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter type="text" field="stateId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="name"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="code"></p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-state>
+    <tr>
+      <td>{{state.stateId}}</td>
+      <td>{{state.name}}</td>
+      <td>{{state.code}}</td>
+    </tr>
+  </ng-template>
+</p-table>
