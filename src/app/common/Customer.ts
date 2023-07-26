@@ -1,6 +1,6 @@
 import {City} from "./City";
 
-export class Customer {
+export class Customer{
   public customerId: number = 0;
   public company: string = "";
   public address: string = "";
