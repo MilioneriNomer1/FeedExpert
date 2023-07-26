@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       // @ts-ignore
-      this.stateService.getUser({lazyEvent: JSON.stringify(event)}).then(res => {
+      this.userService.getUser({lazyEvent: JSON.stringify(event)}).then(res => {
         this.users = res;
         this.totalRecords = res.length;
         this.loading = false;

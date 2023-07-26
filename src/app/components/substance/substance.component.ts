@@ -24,7 +24,7 @@ export class SubstanceComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       // @ts-ignore
-      this.stateService.getSubstance({lazyEvent: JSON.stringify(event)}).then(res => {
+      this.substanceService.getSubstance({lazyEvent: JSON.stringify(event)}).then(res => {
         this.substances = res;
         this.totalRecords = res.length;
         this.loading = false;
