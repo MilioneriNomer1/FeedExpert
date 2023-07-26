@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../common/User";
+import {UserService} from "../../services/user.service";
+import {LazyLoadEvent} from "primeng/api";
 
 @Component({
   selector: 'app-user',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  users: User[] = [];
+  totalRecords: number = 0;
+  loading: boolean = false;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.loading = true;
+  }
+
+  loadUsers(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      // @ts-ignore
+      this.stateService.getUser({lazyEvent: JSON.stringify(event)}).then(res => {
+        this.users = res;
+        this.totalRecords = res.length;
+        this.loading = false;
+      })
+    }, 1000);
   }
 
 }
