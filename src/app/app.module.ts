@@ -17,7 +17,6 @@ import {SplitterModule} from "primeng/splitter";
 import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
-import {CustomerService} from "./services/customerservice";
 import {HttpClientModule} from "@angular/common/http";
 import {CalendarModule} from "primeng/calendar";
 import {DialogModule} from "primeng/dialog";
@@ -65,7 +64,7 @@ import {FormsModule} from "@angular/forms";
     ProgressBarModule,
     FormsModule
   ],
-  providers: [CustomerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
