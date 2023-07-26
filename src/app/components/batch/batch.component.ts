@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Batch} from "../../common/Batch";
-import {StateService} from "../../services/state.service";
 import {BatchService} from "../../services/batch.service";
 import {LazyLoadEvent} from "primeng/api";
 
