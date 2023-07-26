@@ -18,6 +18,7 @@ import {SplitterModule} from "primeng/splitter";
 import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {TableModule} from "primeng/table";
     InputTextModule,
     BrowserAnimationsModule,
     TableModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
