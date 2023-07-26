@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import {Sample} from "../common/Sample";
+import {County} from "../common/County";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SampleService {
+export class CountyService {
 
   constructor(private http: HttpClient) { }
 
-  getSample() {
-    return this.http.get<any>('assets/sample.json')
+  getCounty() {
+    return this.http.get<any>('assets/county.json')
       .toPromise()
-      .then(res => <Sample[]>res.data)
+      .then(res => <County[]>res.data)
       .then(data => { return data; });
   }
 }
