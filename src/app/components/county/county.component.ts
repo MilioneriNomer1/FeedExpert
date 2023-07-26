@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {State} from "../../common/State";
+import {County} from "../../common/County";
+import {StateService} from "../../services/state.service";
+import {LazyLoadEvent} from "primeng/api";
+import {CountyService} from "../../services/county.service";
 
 @Component({
   selector: 'app-county',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountyComponent implements OnInit {
 
-  constructor() { }
+  counties: County[] = [];
+  totalRecords: number = 0;
+  loading: boolean = false;
+
+  constructor(private countyService: CountyService) { }
 
   ngOnInit(): void {
+    this.loading = true;
+  }
+  loadCounties(event: LazyLoadEvent) {
+    this.loading = true;
+    debugger
+    setTimeout(() => {
+      // @ts-ignore
+      this.countyService.getCounty({lazyEvent: JSON.stringify(event)}).then(res => {
+        this.counties = res;
+        this.totalRecords = res.length;
+        this.loading = false;
+      })
+    }, 1000);
   }
 
 }

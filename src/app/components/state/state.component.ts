@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {State} from "../../common/State";
 import {StateService} from "../../services/state.service";
 import {LazyLoadEvent} from "primeng/api";
+import {BatchService} from "../../services/batch.service";
 
 @Component({
   selector: 'app-state',

@@ -1,1 +1,41 @@
-<p>city works!</p>
+<p-table
+  [value]="cities"
+  [lazy]="true"
+  (onLazyLoad)="loadCities($event)"
+  dataKey="id"
+  [tableStyle]="{'min-width': '75rem'}"
+  [paginator]="true"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [loading]="loading">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">City Id<p-sortIcon field="cityId"></p-sortIcon></th>
+      <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
+      <th pSortableColumn="name">Code<p-sortIcon field="code"></p-sortIcon></th>
+      <th pSortableColumn="name">County<p-sortIcon field="countyId"></p-sortIcon></th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter type="text" field="cityId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="name"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="code"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="countyId"></p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-city>
+    <tr>
+      <td>{{city.cityId}}</td>
+      <td>{{city.name}}</td>
+      <td>{{city.code}}</td>
+      <td>{{city.countyId}}</td>
+    </tr>
+  </ng-template>
+</p-table>

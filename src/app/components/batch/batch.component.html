@@ -1,3 +1,57 @@
-<p>batch works!</p>
-
+<p-table
+  [value]="batches"
+  [lazy]="true"
+  (onLazyLoad)="loadBatches($event)"
+  dataKey="id"
+  [tableStyle]="{'min-width': '75rem'}"
+  [paginator]="true"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [loading]="loading">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>
+      <th pSortableColumn="name">receivedDate<p-sortIcon field="receivedDate"></p-sortIcon></th>
+      <th pSortableColumn="name">customerId<p-sortIcon field="customerId"></p-sortIcon></th>
+      <th pSortableColumn="name">supervisorId<p-sortIcon field="supervisorId"></p-sortIcon></th>
+      <th pSortableColumn="name">techlabId<p-sortIcon field="techlabId"></p-sortIcon></th>
+      <th pSortableColumn="name">remarks<p-sortIcon field="remarks"></p-sortIcon></th>
+      <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter type="text" field="scNumber"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="receivedDate"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="customerId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="supervisorId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="techlabId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="remarks"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="internalNotes"></p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-batch>
+    <tr>
+      <td>{{batch.scNumber}}</td>
+      <td>{{batch.receivedDate}}</td>
+      <td>{{batch.customerId}}</td>
+      <td>{{batch.supervisorId}}</td>
+      <td>{{batch.techlabId}}</td>
+      <td>{{batch.remarks}}</td>
+      <td>{{batch.internalNotes}}</td>
+    </tr>
+  </ng-template>
+</p-table>
 

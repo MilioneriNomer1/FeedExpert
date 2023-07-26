@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { BatchComponent } from './components/batch/batch.component';
 import { CityComponent } from './components/city/city.component';
@@ -17,15 +18,6 @@ import {SplitterModule} from "primeng/splitter";
 import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
-import {HttpClientModule} from "@angular/common/http";
-import {CalendarModule} from "primeng/calendar";
-import {DialogModule} from "primeng/dialog";
-import {MultiSelectModule} from "primeng/multiselect";
-import {ContextMenuModule} from "primeng/contextmenu";
-import {DropdownModule} from "primeng/dropdown";
-import {ButtonModule} from "primeng/button";
-import {ProgressBarModule} from "primeng/progressbar";
-import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -50,19 +42,6 @@ import {FormsModule} from "@angular/forms";
     InputTextModule,
     BrowserAnimationsModule,
     TableModule,
-    HttpClientModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    TableModule,
-
-    CalendarModule,
-    DialogModule,
-    MultiSelectModule,
-    ContextMenuModule,
-    DropdownModule,
-    ButtonModule,
-    ProgressBarModule,
-    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

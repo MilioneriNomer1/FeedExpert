@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {LazyLoadEvent} from "primeng/api";
+import {CityService} from "../../services/city.service";
+import {City} from "../../common/City";
 
 @Component({
   selector: 'app-city',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CityComponent implements OnInit {
 
-  constructor() { }
+  cities: City[] = [];
+  totalRecords: number = 0;
+  loading: boolean = false;
+
+  constructor(private cityService: CityService) { }
 
   ngOnInit(): void {
+    this.loading = true;
   }
-
+  loadCities(event: LazyLoadEvent) {
+    this.loading = true;
+    debugger
+    setTimeout(() => {
+      // @ts-ignore
+      this.stateService.getCity({lazyEvent: JSON.stringify(event)}).then(res => {
+        this.cities = res;
+        this.totalRecords = res.length;
+        this.loading = false;
+      })
+    }, 1000);
+  }
 }

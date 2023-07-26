@@ -1,1 +1,76 @@
-<p>sample works!</p>
+<p-table
+  [value]="samples"
+  [lazy]="true"
+  (onLazyLoad)="loadSamples($event)"
+  dataKey="id"
+  [tableStyle]="{'min-width': '75rem'}"
+  [paginator]="true"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [loading]="loading">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">sample Id<p-sortIcon field="sampleId"></p-sortIcon></th>
+      <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>
+      <th pSortableColumn="name">resultDate<p-sortIcon field="resultDate"></p-sortIcon></th>
+      <th pSortableColumn="name">expectedValue<p-sortIcon field="expectedValue"></p-sortIcon></th>
+      <th pSortableColumn="name">actualValue<p-sortIcon field="actualValue"></p-sortIcon></th>
+      <th pSortableColumn="name">meetSpecs<p-sortIcon field="meetSpecs"></p-sortIcon></th>
+      <th pSortableColumn="name">printed<p-sortIcon field="printed"></p-sortIcon></th>
+      <th pSortableColumn="name">book<p-sortIcon field="book"></p-sortIcon></th>
+      <th pSortableColumn="name">page<p-sortIcon field="page"></p-sortIcon></th>
+      <th pSortableColumn="name">batch<p-sortIcon field="batch"></p-sortIcon></th>
+      <th pSortableColumn="name">assayedFor<p-sortIcon field="substanceId"></p-sortIcon></th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter type="text" field="sampleId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="scNumber"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="resultDate"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="expectedValue"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="actualValue"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="meetSpecs"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="printed"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="book"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="batch"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="printed"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="substanceId"></p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-sample>
+    <tr>
+      <td>{{sample.sampleId}}</td>
+      <td>{{sample.scNumber}}</td>
+      <td>{{sample.resultDate}}</td>
+      <td>{{sample.expectedValue}}</td>
+      <td>{{sample.actualValue}}</td>
+      <td>{{sample.meetSpecs}}</td>
+      <td>{{sample.printed}}</td>
+      <td>{{sample.book}}</td>
+      <td>{{sample.batch}}</td>
+      <td>{{sample.printed}}</td>
+      <td>{{sample.substanceId}}</td>
+    </tr>
+  </ng-template>
+</p-table>
