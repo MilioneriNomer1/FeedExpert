@@ -27,7 +27,8 @@
      setTimeout(() => {
        // @ts-ignore
        this.productService.getProduct({lazyEvent: JSON.stringify(event)}).then(res => {
-         this.products = res;
+         // @ts-ignore
+         this.products = res.slice(event.first,event.rows + event.first);
          this.totalRecords = res.length;
          this.loading = false;
        })

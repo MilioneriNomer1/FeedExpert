@@ -25,7 +25,8 @@ export class CityComponent implements OnInit {
     setTimeout(() => {
       // @ts-ignore
       this.cityService.getCity({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.cities = res;
+        // @ts-ignore
+        this.cities = res.slice(event.first,event.rows + event.first);
         this.totalRecords = res.length;
         this.loading = false;
       })

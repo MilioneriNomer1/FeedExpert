@@ -27,7 +27,8 @@ export class CountyComponent implements OnInit {
     setTimeout(() => {
       // @ts-ignore
       this.countyService.getCounty({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.counties = res;
+        // @ts-ignore
+        this.counties = res.slice(event.first,event.rows + event.first);
         this.totalRecords = res.length;
         this.loading = false;
       })

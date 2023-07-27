@@ -23,6 +23,11 @@ import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToolbarModule} from "primeng/toolbar";
+import {RippleModule} from "primeng/ripple";
+import {ConfirmationService, MessageService, PrimeIcons} from "primeng/api";
+import {DropdownModule} from "primeng/dropdown";
+import {InputNumberModule} from "primeng/inputnumber";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -51,9 +56,10 @@ import {ToolbarModule} from "primeng/toolbar";
     FormsModule,
     DialogModule,
     ConfirmDialogModule,
-    ToolbarModule
+    ToolbarModule,
+    RippleModule,
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

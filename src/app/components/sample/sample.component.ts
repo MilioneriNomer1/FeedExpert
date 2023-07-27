@@ -28,7 +28,8 @@ export class SampleComponent implements OnInit {
     setTimeout(() => {
       // @ts-ignore
       this.sampleService.getSample({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.samples = res;
+        // @ts-ignore
+        this.samples = res.slice(event.first,event.rows + event.first);
         this.totalRecords = res.length;
         this.loading = false;
       })

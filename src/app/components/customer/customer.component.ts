@@ -28,7 +28,8 @@ export class CustomerComponent implements OnInit {
     setTimeout(() => {
       // @ts-ignore
       this.customerService.getCustomer({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.customers = res;
+        // @ts-ignore
+        this.customers = res.slice(event.first,event.rows + event.first);
         this.totalRecords = res.length;
         this.loading = false;
       })

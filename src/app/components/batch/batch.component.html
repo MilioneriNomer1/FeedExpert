@@ -1,9 +1,4 @@
 <p-toast></p-toast>
-<p-toolbar styleClass="p-mb-4">
-  <ng-template pTemplate="left">
-    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-  </ng-template>
-</p-toolbar>
 <p-table
   [value]="batches"
   [lazy]="true"
@@ -15,6 +10,13 @@
   [totalRecords]="totalRecords"
   [loading]="loading">
   <ng-template pTemplate="header">
+
+  <p-toolbar>
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+    </ng-template>
+  </p-toolbar>
+
     <tr>
       <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>
       <th pSortableColumn="name">receivedDate<p-sortIcon field="receivedDate"></p-sortIcon></th>
@@ -23,6 +25,8 @@
       <th pSortableColumn="name">techlabId<p-sortIcon field="techlabId"></p-sortIcon></th>
       <th pSortableColumn="name">remarks<p-sortIcon field="remarks"></p-sortIcon></th>
       <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>
+      <th pSortableColumn="name">productId<p-sortIcon field="productId"></p-sortIcon></th>
+      <th></th>
     </tr>
     <tr>
       <th>
@@ -46,6 +50,9 @@
       <th>
         <p-columnFilter type="text" field="internalNotes"></p-columnFilter>
       </th>
+      <th>
+        <p-columnFilter type="text" field="productId"></p-columnFilter>
+      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -58,6 +65,7 @@
       <td>{{batch.techlabId}}</td>
       <td>{{batch.remarks}}</td>
       <td>{{batch.internalNotes}}</td>
+      <td>{{batch.product.productId}}</td>
       <td>
         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editBatch(batch)"></button>
         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBatch(batch)"></button>
@@ -65,6 +73,7 @@
     </tr>
   </ng-template>
 </p-table>
+
 <p-dialog [(visible)]="batchDialog" [style]="{width: '450px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
@@ -73,36 +82,37 @@
       <small class="p-invalid" *ngIf="submitted && !batch.scNumber">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="receivedDate">scNumber</label>
+      <label for="receivedDate">receivedDate</label>
       <input type="text" pInputText id="receivedDate" [(ngModel)]="batch.receivedDate" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.receivedDate">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="customerId">scNumber</label>
+      <label for="customerId">customerId</label>
       <input type="text" pInputText id="customerId" [(ngModel)]="batch.customerId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.customerId">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="supervisorId">scNumber</label>
+      <label for="supervisorId">supervisorId</label>
       <input type="text" pInputText id="supervisorId" [(ngModel)]="batch.supervisitorId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.supervisitorId">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="techlabId">scNumber</label>
+      <label for="techlabId">techlabId</label>
       <input type="text" pInputText id="techlabId" [(ngModel)]="batch.techlabId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.techlabId">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="remarks">scNumber</label>
+      <label for="remarks">remarks</label>
       <input type="text" pInputText id="remarks" [(ngModel)]="batch.remarks" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.remarks">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="internalNotes">scNumber</label>
+      <label for="internalNotes">internalNotes</label>
       <input type="text" pInputText id="internalNotes" [(ngModel)]="batch.internalNotes" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.internalNotes">internalNotes is required.</small>
     </div>
   </ng-template>
+
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBatch()"></button>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Batch} from "../../common/Batch";
 import {BatchService} from "../../services/batch.service";
-import {LazyLoadEvent} from "primeng/api";
+import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
+import {Product} from "../../common/Product";
 
 @Component({
   selector: 'app-batch',
@@ -16,8 +17,9 @@ export class BatchComponent implements OnInit {
   loading: boolean = false;
   batchDialog: boolean = false;
   submitted: boolean = false;
+  //product: Product = new Product();
 
-  constructor(private batchService: BatchService) { }
+  constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -29,7 +31,8 @@ export class BatchComponent implements OnInit {
     setTimeout(() => {
       // @ts-ignore
       this.batchService.getBatch({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.batches = res;
+        // @ts-ignore
+        this.batches = res.slice(event.first,event.rows + event.first);
         this.totalRecords = res.length;
         this.loading = false;
       })
@@ -37,22 +40,34 @@ export class BatchComponent implements OnInit {
   }
 
   openNew() {
-    
+    this.batch = new Batch();
+    this.submitted = false;
+    this.batchDialog = true;
   }
 
   saveBatch() {
-    
+    this.messageService.add({severity:'success', summary: 'Successful', detail: 'Batch Updated', life: 3000});
+    this.batchDialog = false;
   }
 
   hideDialog() {
-    
+    this.batchDialog = false;
+    this.submitted = false;
   }
 
-  deleteBatch(batch: any) {
-    
+  deleteBatch(batch: Batch) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + batch.scNumber + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Batch Deleted', life: 3000})
+      }
+    });
   }
 
-  editBatch(batch: any) {
-    
+  editBatch(batch: Batch) {
+    this.batch = {...batch};
+    this.batchDialog = true;
   }
 }
