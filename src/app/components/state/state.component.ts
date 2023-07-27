@@ -26,7 +26,8 @@ debugger
     setTimeout(() => {
       // @ts-ignore
       this.stateService.getState({lazyEvent: JSON.stringify(event)}).then(res => {
-        this.states = res;
+        // @ts-ignore
+        this.states = res.slice(event.first,event.rows + event.first);
         this.totalRecords = res.length;
         this.loading = false;
       })

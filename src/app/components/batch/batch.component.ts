@@ -11,8 +11,12 @@ import {LazyLoadEvent} from "primeng/api";
 export class BatchComponent implements OnInit {
 
   batches: Batch[] = [];
+  batch: Batch = new Batch();
   totalRecords: number = 0;
   loading: boolean = false;
+  batchDialog: boolean = false;
+  submitted: boolean = false;
+
   constructor(private batchService: BatchService) { }
 
   ngOnInit(): void {
@@ -30,5 +34,25 @@ export class BatchComponent implements OnInit {
         this.loading = false;
       })
     }, 1000);
+  }
+
+  openNew() {
+    
+  }
+
+  saveBatch() {
+    
+  }
+
+  hideDialog() {
+    
+  }
+
+  deleteBatch(batch: any) {
+    
+  }
+
+  editBatch(batch: any) {
+    
   }
 }

@@ -19,6 +19,10 @@ import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
+import {DialogModule} from "primeng/dialog";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToolbarModule} from "primeng/toolbar";
 
 
 @NgModule({
@@ -43,7 +47,11 @@ import {HttpClientModule} from "@angular/common/http";
     InputTextModule,
     BrowserAnimationsModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    DialogModule,
+    ConfirmDialogModule,
+    ToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
