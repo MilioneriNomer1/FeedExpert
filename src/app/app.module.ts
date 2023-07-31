@@ -25,6 +25,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToolbarModule} from "primeng/toolbar";
 import {RippleModule} from "primeng/ripple";
 import {ConfirmationService, MessageService, PrimeIcons} from "primeng/api";
+import { TableComponent } from './utils/table/table.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {ConfirmationService, MessageService, PrimeIcons} from "primeng/api";
     StateComponent,
     SubstanceComponent,
     UserComponent,
-    SampleComponent
+    SampleComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
