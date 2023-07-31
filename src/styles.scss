@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+.p-toolbar {
+  border: 0px;
+  background: #ffffff;
+}
+
+::ng-deep .p-column-filter-row p-columnfilterformelement{
+ height: 10% !important;
+}

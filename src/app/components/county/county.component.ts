@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {State} from "../../common/State";
 import {County} from "../../common/County";
-import {StateService} from "../../services/state.service";
-import {LazyLoadEvent} from "primeng/api";
+import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 import {CountyService} from "../../services/county.service";
+import {City} from "../../common/City";
 
 @Component({
   selector: 'app-county',
@@ -15,8 +14,11 @@ export class CountyComponent implements OnInit {
   counties: County[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
+  countyDialog: any;
+  county: County = new County();
+  submitted: boolean = false;
 
-  constructor(private countyService: CountyService) { }
+  constructor(private countyService: CountyService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -35,4 +37,39 @@ export class CountyComponent implements OnInit {
     }, 1000);
   }
 
+  openNew() {
+    this.county = new County();
+    this.submitted = false;
+    this.countyDialog = true;
+
+  }
+
+  editCounty(county: any) {
+    this.county = {...county};
+    this.countyDialog = true;
+
+  }
+
+  deleteCounty(county: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + county.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'County Deleted', life: 3000})
+      }
+    });
+
+  }
+
+  hideDialog() {
+    this.countyDialog = false;
+    this.submitted = false;
+
+  }
+
+  saveCounty() {
+    this.messageService.add({severity:'success', summary: 'Successful', detail: 'County Updated', life: 3000});
+    this.countyDialog = false;
+  }
 }

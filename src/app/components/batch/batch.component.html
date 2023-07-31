@@ -27,6 +27,7 @@
       <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>
       <th pSortableColumn="name">productId<p-sortIcon field="productId"></p-sortIcon></th>
       <th></th>
+      <th></th>
     </tr>
     <tr>
       <th>
@@ -54,6 +55,7 @@
         <p-columnFilter type="text" field="productId"></p-columnFilter>
       </th>
       <th></th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-batch>
@@ -68,6 +70,7 @@
       <td>{{batch.product.productId}}</td>
       <td>
         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editBatch(batch)"></button>
+      </td><td>
         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBatch(batch)"></button>
       </td>
     </tr>

@@ -25,9 +25,6 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToolbarModule} from "primeng/toolbar";
 import {RippleModule} from "primeng/ripple";
 import {ConfirmationService, MessageService, PrimeIcons} from "primeng/api";
-import {DropdownModule} from "primeng/dropdown";
-import {InputNumberModule} from "primeng/inputnumber";
-import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -57,7 +54,7 @@ import {ButtonModule} from "primeng/button";
     DialogModule,
     ConfirmDialogModule,
     ToolbarModule,
-    RippleModule,
+    RippleModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

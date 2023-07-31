@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Batch} from "../../common/Batch";
 import {BatchService} from "../../services/batch.service";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
-import {Product} from "../../common/Product";
 
 @Component({
   selector: 'app-batch',
@@ -17,7 +16,6 @@ export class BatchComponent implements OnInit {
   loading: boolean = false;
   batchDialog: boolean = false;
   submitted: boolean = false;
-  //product: Product = new Product();
 
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
