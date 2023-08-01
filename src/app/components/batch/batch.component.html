@@ -9,6 +9,11 @@
   [rows]="10"
   [totalRecords]="totalRecords"
   [loading]="loading">
+  selectionMode="single"
+  [(selection)]="selectedBatch"
+  dataKey="code"
+  (onRowSelect)="onRowSelect($event)"
+  (onRowUnselect)="onRowUnselect($event)"
   <ng-template pTemplate="header">
 
   <p-toolbar>
@@ -60,6 +65,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-batch>
     <tr>
+    <tr [pSelectableRow]="batch" class="p-element p-selectable-row ng-star-inserted" (click)="onRowSelect(batch)">
       <td>{{batch.scNumber}}</td>
       <td>{{batch.receivedDate}}</td>
       <td>{{batch.customerId}}</td>
@@ -115,11 +121,100 @@
       <small class="p-invalid" *ngIf="submitted && !batch.internalNotes">internalNotes is required.</small>
     </div>
   </ng-template>
-
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBatch()"></button>
   </ng-template>
 </p-dialog>
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
+
+  <p-dialog [(visible)]="sampleTableDialog" [style]="{width: '900px'}" header="Sample Details" [modal]="true"
+            styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <p-table>
+        <ng-template pTemplate="header">
+
+          <p-toolbar>
+            <ng-template pTemplate="left">
+              <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNewSample()"></button>
+            </ng-template>
+          </p-toolbar>
+
+          <tr>
+            <th pSortableColumn="name">sampleId<p-sortIcon field="sampleId"></p-sortIcon></th>
+            <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>
+            <th pSortableColumn="name">resultDate<p-sortIcon field="resultDate"></p-sortIcon></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>
+              <p-columnFilter type="text" field="sampleId"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="scNumber"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="resultDate"></p-columnFilter>
+            </th>
+
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-sample>
+          <tr>
+            <td>{{sample.sampleId}}</td>
+            <td>{{sample.scNumber}}</td>
+            <td>{{sample.resultDate}}</td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editSample(sample)"></button>
+            </td><td>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEditSample(sample)"></button>
+          </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </ng-template>
+    </p-dialog>
+
+  <p-dialog [(visible)]="sampleDialog" [style]="{width: '600px'}" header="Sample Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="p-field">
+        <label for="sampleId">Sample ID</label>
+        <input type="text" pInputText id="sampleId" [(ngModel)]="sample.sampleId" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.sampleId">Sample Id is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="scNumber1">scNumber</label>
+        <input type="text" pInputText id="scNumber1" [(ngModel)]="sample.scNumber" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.scNumber">Name is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="resultDate">Result Date</label>
+        <input type="text" pInputText id="resultDate" [(ngModel)]="sample.resultDate" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.resultDate">Result Date is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="expectedValue">Expected Value</label>
+        <input type="text" pInputText id="expectedValue" [(ngModel)]="sample.expectedValue" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.expectedValue">Expected Value is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="actualValue">Actual Value</label>
+        <input type="text" pInputText id="actualValue" [(ngModel)]="sample.actualValue" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.actualValue">Actual Value is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="meetSpecs">MeetSpecs</label>
+        <input type="text" pInputText id="meetSpecs" [(ngModel)]="sample.meetSpecs" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.meetSpecs">MeetSpecs is required.</small>
+      </div>
+    </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSample()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
