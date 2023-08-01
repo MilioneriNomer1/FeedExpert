@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Batch} from "../../common/Batch";
 import {BatchService} from "../../services/batch.service";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-batch',
@@ -17,10 +18,46 @@ export class BatchComponent implements OnInit {
   batchDialog: boolean = false;
   submitted: boolean = false;
 
+  fields: FieldInfo[] = [];
+
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.loading = true;
+    // this.loading = true;
+    this.fields = [
+      {
+        name: 'scNumber',
+        title: 'SC Number'
+      },
+      {
+        name: 'receivedDate',
+        title: 'Received Date'
+      },
+      {
+        name: 'customerId',
+        title: 'Customer Id'
+      },
+      {
+        name: 'supervisitorId',
+        title: 'Supervisitor Id'
+      },
+      {
+        name: 'techlabId',
+        title: 'Techlab Id'
+      },
+      // {
+      //   name: 'remarks',
+      //   title: 'Remarks'
+      // },
+      // {
+      //   name: 'internalNotes',
+      //   title: 'Internal Notes'
+      // },
+      // {
+      //   name: 'product',
+      //   title: 'Product Id'
+      // }
+    ];
   }
 
   loadBatches(event: LazyLoadEvent) {

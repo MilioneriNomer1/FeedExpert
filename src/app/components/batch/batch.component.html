@@ -1,81 +1,84 @@
 <p-toast></p-toast>
-<p-table
-  [value]="batches"
-  [lazy]="true"
-  (onLazyLoad)="loadBatches($event)"
-  dataKey="id"
-  [tableStyle]="{'min-width': '75rem'}"
-  [paginator]="true"
-  [rows]="10"
-  [totalRecords]="totalRecords"
-  [loading]="loading">
-  <ng-template pTemplate="header">
 
-  <p-toolbar>
-    <ng-template pTemplate="left">
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-    </ng-template>
-  </p-toolbar>
+<app-table [fields]="fields"></app-table>
 
-    <tr>
-      <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>
-      <th pSortableColumn="name">receivedDate<p-sortIcon field="receivedDate"></p-sortIcon></th>
-      <th pSortableColumn="name">customerId<p-sortIcon field="customerId"></p-sortIcon></th>
-      <th pSortableColumn="name">supervisitorId<p-sortIcon field="supervisorId"></p-sortIcon></th>
-      <th pSortableColumn="name">techlabId<p-sortIcon field="techlabId"></p-sortIcon></th>
-      <th pSortableColumn="name">remarks<p-sortIcon field="remarks"></p-sortIcon></th>
-      <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>
-      <th pSortableColumn="name">productId<p-sortIcon field="productId"></p-sortIcon></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>
-        <p-columnFilter type="text" field="scNumber"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="receivedDate"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="customerId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="supervisitorId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="techlabId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="remarks"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="internalNotes"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="productId"></p-columnFilter>
-      </th>
-      <th></th>
-      <th></th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-batch>
-    <tr>
-      <td>{{batch.scNumber}}</td>
-      <td>{{batch.receivedDate}}</td>
-      <td>{{batch.customerId}}</td>
-      <td>{{batch.supervisitorId}}</td>
-      <td>{{batch.techlabId}}</td>
-      <td>{{batch.remarks}}</td>
-      <td>{{batch.internalNotes}}</td>
-      <td>{{batch.product.productId}}</td>
-      <td>
-        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editBatch(batch)"></button>
-      </td><td>
-        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBatch(batch)"></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+<!--<p-table-->
+<!--  [value]="batches"-->
+<!--  [lazy]="true"-->
+<!--  (onLazyLoad)="loadBatches($event)"-->
+<!--  dataKey="id"-->
+<!--  [tableStyle]="{'min-width': '75rem'}"-->
+<!--  [paginator]="true"-->
+<!--  [rows]="10"-->
+<!--  [totalRecords]="totalRecords"-->
+<!--  [loading]="loading">-->
+<!--  <ng-template pTemplate="header">-->
+
+<!--  <p-toolbar>-->
+<!--    <ng-template pTemplate="left">-->
+<!--      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>-->
+<!--    </ng-template>-->
+<!--  </p-toolbar>-->
+
+<!--    <tr>-->
+<!--      <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">receivedDate<p-sortIcon field="receivedDate"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">customerId<p-sortIcon field="customerId"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">supervisitorId<p-sortIcon field="supervisorId"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">techlabId<p-sortIcon field="techlabId"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">remarks<p-sortIcon field="remarks"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>-->
+<!--      <th pSortableColumn="name">productId<p-sortIcon field="productId"></p-sortIcon></th>-->
+<!--      <th></th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="scNumber"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="receivedDate"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="customerId"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="supervisitorId"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="techlabId"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="remarks"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="internalNotes"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th>-->
+<!--        <p-columnFilter type="text" field="productId"></p-columnFilter>-->
+<!--      </th>-->
+<!--      <th></th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="body" let-batch>-->
+<!--    <tr>-->
+<!--      <td>{{batch.scNumber}}</td>-->
+<!--      <td>{{batch.receivedDate}}</td>-->
+<!--      <td>{{batch.customerId}}</td>-->
+<!--      <td>{{batch.supervisitorId}}</td>-->
+<!--      <td>{{batch.techlabId}}</td>-->
+<!--      <td>{{batch.remarks}}</td>-->
+<!--      <td>{{batch.internalNotes}}</td>-->
+<!--      <td>{{batch.product.productId}}</td>-->
+<!--      <td>-->
+<!--        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editBatch(batch)"></button>-->
+<!--      </td><td>-->
+<!--        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBatch(batch)"></button>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--</p-table>-->
 
 <p-dialog [(visible)]="batchDialog" [style]="{width: '450px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">

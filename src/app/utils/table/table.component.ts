@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-table',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
+  @Input() fields: FieldInfo[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openNew() {
+  }
+
+  edit() {
+
+  }
 }
