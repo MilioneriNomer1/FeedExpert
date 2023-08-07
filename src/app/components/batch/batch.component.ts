@@ -6,7 +6,7 @@ import {Sample} from "../../common/Sample";
 import {SampleService} from "../../services/sample.service";
 import {Product} from "../../common/Product";
 import {Customer} from "../../common/Customer";
-import {DatePipe} from "@angular/common";
+import {DatePipe, formatDate} from "@angular/common";
 
 
 @Component({
@@ -36,6 +36,8 @@ export class BatchComponent implements OnInit {
   loading: boolean = false;
   submittedBatch: boolean = false;
   submittedSample: boolean = false;
+  date: Date = new Date();
+
 
 
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService,
@@ -144,4 +146,5 @@ export class BatchComponent implements OnInit {
     this.samples = this.batch.samples;
     this.totalRecords = this.samples.length;
   }
+
 }

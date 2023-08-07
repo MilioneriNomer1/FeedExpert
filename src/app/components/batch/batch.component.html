@@ -72,8 +72,10 @@
     </div>
     <div class="p-field">
       <label for="receivedDate">Received Date</label>
-      <input type="text" pInputText id="receivedDate" [(ngModel)]="batch.receivedDate" required autofocus />
-      <small class="p-invalid" *ngIf="submittedBatch && !batch.receivedDate">Name is required.</small>
+      <input id="receivedDate" [(ngModel)]="batch.receivedDate" required autofocus />
+      <div class="p-field p-col-12 p-md-4">
+        <p-calendar field="receivedDate" [(ngModel)]="date" inputId="basic">></p-calendar>
+      </div>
     </div>
     <div class="p-field">
       <label for="remarks">Remarks</label>

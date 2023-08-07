@@ -30,6 +30,7 @@ import {DropdownModule} from "primeng/dropdown";
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import {DatePipe} from "@angular/common";
+import {CalendarModule} from "primeng/calendar";
 
 
 
@@ -65,7 +66,8 @@ import {DatePipe} from "@angular/common";
     ToolbarModule,
     RippleModule,
     DropdownModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule
   ],
   providers: [MessageService, ConfirmationService, DatePipe],
   bootstrap: [AppComponent]
