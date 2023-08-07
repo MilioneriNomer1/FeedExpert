@@ -6,6 +6,7 @@ import {Sample} from "../../common/Sample";
 import {SampleService} from "../../services/sample.service";
 import {Product} from "../../common/Product";
 import {Customer} from "../../common/Customer";
+import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -16,7 +17,6 @@ import {Customer} from "../../common/Customer";
 export class BatchComponent implements OnInit {
 
   batch: Batch = new Batch();
-  selectedBatch: Batch = new Batch();
   batches: Batch[] = [];
   batchDialog: boolean = false;
 
@@ -32,12 +32,15 @@ export class BatchComponent implements OnInit {
   selectCustomer: Customer = new Customer();
 
   totalRecords: number = 0;
+  totalRecordsSample: number = 0;
   loading: boolean = false;
-  submitted: boolean = false;
+  submittedBatch: boolean = false;
+  submittedSample: boolean = false;
 
 
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService,
               private sampleService: SampleService) { }
+
 
   ngOnInit(): void {
     this.loading = true;
@@ -45,7 +48,6 @@ export class BatchComponent implements OnInit {
 
   loadBatches(event: LazyLoadEvent) {
     this.loading = true;
-    debugger
     setTimeout(() => {
       // @ts-ignore
       this.batchService.getBatch({lazyEvent: JSON.stringify(event)}).then(res => {
@@ -59,7 +61,7 @@ export class BatchComponent implements OnInit {
 
   openNew() {
     this.batch = new Batch();
-    this.submitted = false;
+    this.submittedBatch = false;
     this.batchDialog = true;
   }
 
@@ -70,7 +72,19 @@ export class BatchComponent implements OnInit {
 
   hideDialog() {
     this.batchDialog = false;
-    this.submitted = false;
+    this.submittedBatch = false;
+  }
+
+  hideDialogSampleTable() {
+    this.sampleTableDialog = false;
+    this.submittedBatch = false;
+    this.submittedSample = false;
+  }
+
+  hideDialogSampleDetails() {
+    this.sampleDialog = false;
+    this.submittedBatch = false;
+    this.submittedSample = false;
   }
 
   deleteBatch(batch: Batch) {
@@ -84,22 +98,20 @@ export class BatchComponent implements OnInit {
     });
   }
 
-  editBatch(batch: Batch) {
+  editBatch(batch: any) {
     this.batch = {...batch};
     this.batchDialog = true;
   }
 
-  onRowSelect(batch: Batch) {
-    debugger
-    this.sample = new Sample();
-    this.submitted = false;
+  onRowSelect(batch: any) {
+    this.submittedBatch = false;
     this.sampleTableDialog = true;
-    this.selectedBatch = batch;
+    this.batch = batch.data;
   }
 
   openNewSample() {
     this.sample = new Sample();
-    this.submitted = false;
+    this.submittedBatch = false;
     this.sampleDialog = true;
   }
 
@@ -108,7 +120,7 @@ export class BatchComponent implements OnInit {
     this.sampleDialog = true;
   }
 
-  deleteEditSample(sample: any) {
+  deleteSample(sample: any) {
 
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + sample.scNumber + '?',
@@ -127,13 +139,9 @@ export class BatchComponent implements OnInit {
   }
 
   loadSample($event: any) {
-    this.loading = true;
     debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.samples = this.selectedBatch.samples.slice(event.first,event.rows + event.first);
-      this.totalRecords = this.samples.length;
-      this.loading = false;
-    }, 1000);
+    // @ts-ignore
+    this.samples = this.batch.samples;
+    this.totalRecords = this.samples.length;
   }
 }

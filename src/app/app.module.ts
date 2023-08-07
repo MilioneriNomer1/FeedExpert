@@ -29,6 +29,7 @@ import { TableComponent } from './utils/table/table.component';
 import {DropdownModule} from "primeng/dropdown";
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import {DatePipe} from "@angular/common";
 
 
 
@@ -66,7 +67,7 @@ import { LoginComponent } from './components/login/login.component';
     DropdownModule,
     ReactiveFormsModule
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

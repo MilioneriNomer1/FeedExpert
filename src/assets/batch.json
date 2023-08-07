@@ -1,6 +1,7 @@
 {
   "data": [
     {
+      "scNumber": 1,
       "productId": 4242,
       "customerId": 4242,
       "supervisorId": 242,
@@ -30,6 +31,7 @@
       ]
     },
     {
+      "scNumber": 2,
       "productId": 4672,
       "customerId": 2345,
       "supervisorId": 43,
@@ -59,6 +61,7 @@
       ]
     },
     {
+      "scNumber": 3,
       "productId": 6545,
       "customerId": 8976,
       "supervisorId": 987,
@@ -106,6 +109,7 @@
       ]
     },
     {
+      "scNumber": 4,
       "productId": 8979,
       "customerId": 6665,
       "supervisorId": 768,
@@ -143,6 +147,7 @@
       ]
     },
     {
+      "scNumber": 5,
       "productId": 4566,
       "customerId": 4565,
       "supervisorId": 678,
@@ -190,6 +195,7 @@
       ]
     },
     {
+      "scNumber": 6,
       "productId": 6564,
       "customerId": 4446,
       "supervisorId": 666,
@@ -219,6 +225,7 @@
       ]
     },
     {
+      "scNumber": 7,
       "productId": 6564,
       "customerId": 4446,
       "supervisorId": 666,
@@ -248,6 +255,7 @@
       ]
     },
     {
+      "scNumber": 8,
       "productId": 7978,
       "customerId": 9999,
       "supervisorId": 678,
@@ -277,6 +285,7 @@
       ]
     },
     {
+      "scNumber": 9,
       "productId": 5245,
       "customerId": 4556,
       "supervisorId": 64575,
@@ -306,6 +315,7 @@
       ]
     },
     {
+      "scNumber": 10,
       "productId": 5674,
       "customerId": 689,
       "supervisorId": 7896,
