@@ -1,6 +1,11 @@
 <p-toast></p-toast>
 
-<app-table [fields]="fields"></app-table>
+<app-table [fields]="fields"
+           [baseOperationService]="batchService"
+           (editModelEvent)="editBatch($event)"
+           (deleteModelEvent)="deleteBatch($event)">
+
+</app-table>
 
 <!--<p-table-->
 <!--  [value]="batches"-->

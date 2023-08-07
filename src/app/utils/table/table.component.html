@@ -1,9 +1,13 @@
 <p-table
   [columns]="fields"
+  [value]="data"
+  (onLazyLoad)="loadData($event)"
   [lazy]="true"
   dataKey="id"
   [tableStyle]="{'min-width': '75rem'}"
   [paginator]="true"
+  [totalRecords]="totalRecords"
+  [loading]="loading"
   [rows]="10">
 
   <ng-template pTemplate="header" let-columns>
@@ -19,25 +23,31 @@
         {{ col.title }}
         <p-sortIcon></p-sortIcon>
       </th>
+      <th></th>
+      <th></th>
     </tr>
 
     <tr>
       <th *ngFor="let col of columns">
         <p-columnFilter type="text"></p-columnFilter>
       </th>
+      <th></th>
+      <th></th>
     </tr>
 
   </ng-template>
-  <ng-template pTemplate="body" let-columns>
+  <ng-template pTemplate="body" let-row>
     <tr>
-      <td *ngFor="let col of columns">
-        {{ col.name }}
+      <td *ngFor="let field of fields">
+        {{ row[field.name] }}
+      </td>
+
+      <td [style]="{padding: '5px'}">
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editModel(row)"></button>
       </td>
       <td>
-        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit()"></button>
-      </td><td>
-      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
-    </td>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteModel(row)"></button>
+      </td>
     </tr>
   </ng-template>
 </p-table>

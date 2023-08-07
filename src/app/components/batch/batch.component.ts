@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Batch} from "../../common/Batch";
 import {BatchService} from "../../services/batch.service";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 import {FieldInfo} from "../../FieldInfo";
+import {TableComponent} from "../../utils/table/table.component";
 
 @Component({
   selector: 'app-batch',
@@ -11,19 +12,15 @@ import {FieldInfo} from "../../FieldInfo";
 })
 export class BatchComponent implements OnInit {
 
-  batches: Batch[] = [];
   batch: Batch = new Batch();
-  totalRecords: number = 0;
-  loading: boolean = false;
   batchDialog: boolean = false;
   submitted: boolean = false;
 
   fields: FieldInfo[] = [];
 
-  constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(public batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    // this.loading = true;
     this.fields = [
       {
         name: 'scNumber',
@@ -38,43 +35,19 @@ export class BatchComponent implements OnInit {
         title: 'Customer Id'
       },
       {
-        name: 'supervisitorId',
-        title: 'Supervisitor Id'
+        name: 'remarks',
+        title: 'Remarks'
       },
       {
-        name: 'techlabId',
-        title: 'Techlab Id'
-      },
-      // {
-      //   name: 'remarks',
-      //   title: 'Remarks'
-      // },
-      // {
-      //   name: 'internalNotes',
-      //   title: 'Internal Notes'
-      // },
-      // {
-      //   name: 'product',
-      //   title: 'Product Id'
-      // }
+        name: 'internalNotes',
+        title: 'Internal Notes'
+      }
     ];
   }
 
-  loadBatches(event: LazyLoadEvent) {
-    this.loading = true;
-    debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.batchService.getBatch({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.batches = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
-  }
 
   openNew() {
+
     this.batch = new Batch();
     this.submitted = false;
     this.batchDialog = true;
@@ -92,7 +65,7 @@ export class BatchComponent implements OnInit {
 
   deleteBatch(batch: Batch) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + batch.scNumber + '?',
+      message: 'Are you sure you want to delete ' + batch.remarks + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
