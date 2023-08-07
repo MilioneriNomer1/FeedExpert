@@ -21,6 +21,10 @@ implements OnInit{
       label: 'Components',
       items: [
         {
+          label: 'LogIn',
+          routerLink: '/login',
+        },
+        {
           label: 'Batch',
           routerLink: '/batch',
         },

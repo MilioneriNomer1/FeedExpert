@@ -4,6 +4,8 @@ import {BatchService} from "../../services/batch.service";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 import {Sample} from "../../common/Sample";
 import {SampleService} from "../../services/sample.service";
+import {Product} from "../../common/Product";
+import {Customer} from "../../common/Customer";
 
 
 @Component({
@@ -13,16 +15,26 @@ import {SampleService} from "../../services/sample.service";
 })
 export class BatchComponent implements OnInit {
 
-  batches: Batch[] = [];
   batch: Batch = new Batch();
-  totalRecords: number = 0;
-  loading: boolean = false;
+  selectedBatch: Batch = new Batch();
+  batches: Batch[] = [];
   batchDialog: boolean = false;
-  submitted: boolean = false;
+
   sample: Sample = new Sample();
   samples: Sample[] = [];
   sampleDialog: boolean = false;
   sampleTableDialog: boolean = false;
+
+  products: Product[] = [];
+  selectProduct: Product = new Product();
+
+  customers: Customer[] = [];
+  selectCustomer: Customer = new Customer();
+
+  totalRecords: number = 0;
+  loading: boolean = false;
+  submitted: boolean = false;
+
 
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService,
               private sampleService: SampleService) { }
@@ -63,7 +75,7 @@ export class BatchComponent implements OnInit {
 
   deleteBatch(batch: Batch) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + batch.scNumber + '?',
+      message: 'Are you sure you want to delete ' + batch.remarks + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -77,10 +89,12 @@ export class BatchComponent implements OnInit {
     this.batchDialog = true;
   }
 
-  onRowSelect(batch: any) {
+  onRowSelect(batch: Batch) {
+    debugger
     this.sample = new Sample();
     this.submitted = false;
     this.sampleTableDialog = true;
+    this.selectedBatch = batch;
   }
 
   openNewSample() {
@@ -117,13 +131,9 @@ export class BatchComponent implements OnInit {
     debugger
     setTimeout(() => {
       // @ts-ignore
-      this.sampleService.getSample({lazyEvent: JSON.stringify(event)}).then(res => {
-        debugger
-        // @ts-ignore
-        this.samples = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
+      this.samples = this.selectedBatch.samples.slice(event.first,event.rows + event.first);
+      this.totalRecords = this.samples.length;
+      this.loading = false;
     }, 1000);
   }
 }
