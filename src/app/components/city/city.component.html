@@ -1,7 +1,9 @@
+<p-toast></p-toast>
 <app-table [fields]="fields"
            [baseOperationService]="cityService"
            (editModelEvent)="edit($event)"
-           (deleteModelEvent)="delete($event)">
+           (deleteModelEvent)="delete($event)"
+           (newModelEvent)="openNew()">
 </app-table>
 
 <p-dialog [(visible)]="cityDialog" [style]="{width: '450px'}" header="City Details" [modal]="true" styleClass="p-fluid">

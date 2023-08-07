@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
 
   @Output() editModelEvent: EventEmitter<any> = new EventEmitter();
   @Output() deleteModelEvent: EventEmitter<any> = new EventEmitter();
+  @Output() newModelEvent: EventEmitter<any> = new EventEmitter();
 
   totalRecords: number = 0;
   loading: boolean = false;
@@ -41,7 +42,8 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openNew() {
+  newModel() {
+    this.editModelEvent.emit()
   }
 
   editModel(row: any) {

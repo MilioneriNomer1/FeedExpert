@@ -14,7 +14,6 @@ export class CityComponent implements OnInit {
   fields: FieldInfo[] = [];
 
   city: City = new City;
-  cities: City[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
   cityDialog: boolean = false;
@@ -40,20 +39,6 @@ export class CityComponent implements OnInit {
     ];
   }
 
-  loadCities(event: LazyLoadEvent) {
-    this.loading = true;
-    debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.cityService.getCity({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.cities = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
-  }
-
   delete(city: any) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + city.name + '?',
@@ -68,7 +53,7 @@ export class CityComponent implements OnInit {
   edit(city: any) {
     this.city = {...city};
     this.cityDialog = true;
-
+    this.submitted = false;
   }
 
   openNew() {
