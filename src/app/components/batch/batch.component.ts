@@ -17,7 +17,6 @@ import {DatePipe} from "@angular/common";
 export class BatchComponent implements OnInit {
 
   batch: Batch = new Batch();
-  selectedBatch: Batch = new Batch();
   batches: Batch[] = [];
   batchDialog: boolean = false;
 
@@ -33,9 +32,10 @@ export class BatchComponent implements OnInit {
   selectCustomer: Customer = new Customer();
 
   totalRecords: number = 0;
+  totalRecordsSample: number = 0;
   loading: boolean = false;
-  submitted: boolean = false;
-
+  submittedBatch: boolean = false;
+  submittedSample: boolean = false;
 
 
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService,
@@ -48,7 +48,6 @@ export class BatchComponent implements OnInit {
 
   loadBatches(event: LazyLoadEvent) {
     this.loading = true;
-    debugger
     setTimeout(() => {
       // @ts-ignore
       this.batchService.getBatch({lazyEvent: JSON.stringify(event)}).then(res => {
@@ -62,7 +61,7 @@ export class BatchComponent implements OnInit {
 
   openNew() {
     this.batch = new Batch();
-    this.submitted = false;
+    this.submittedBatch = false;
     this.batchDialog = true;
   }
 
@@ -73,17 +72,19 @@ export class BatchComponent implements OnInit {
 
   hideDialog() {
     this.batchDialog = false;
-    this.submitted = false;
+    this.submittedBatch = false;
   }
 
   hideDialogSampleTable() {
     this.sampleTableDialog = false;
-    this.submitted = false;
+    this.submittedBatch = false;
+    this.submittedSample = false;
   }
 
   hideDialogSampleDetails() {
     this.sampleDialog = false;
-    this.submitted = false;
+    this.submittedBatch = false;
+    this.submittedSample = false;
   }
 
   deleteBatch(batch: Batch) {
@@ -97,22 +98,20 @@ export class BatchComponent implements OnInit {
     });
   }
 
-  editBatch(batch: Batch) {
+  editBatch(batch: any) {
     this.batch = {...batch};
     this.batchDialog = true;
   }
 
-  onRowSelect(batch: Batch) {
-    debugger
-    this.sample = new Sample();
-    this.submitted = false;
+  onRowSelect(batch: any) {
+    this.submittedBatch = false;
     this.sampleTableDialog = true;
-    this.selectedBatch = batch;
+    this.batch = batch.data;
   }
 
   openNewSample() {
     this.sample = new Sample();
-    this.submitted = false;
+    this.submittedBatch = false;
     this.sampleDialog = true;
   }
 
@@ -142,7 +141,7 @@ export class BatchComponent implements OnInit {
   loadSample($event: any) {
     debugger
     // @ts-ignore
-    this.samples = this.selectedBatch.data.samples;
+    this.samples = this.batch.samples;
     this.totalRecords = this.samples.length;
   }
 }

@@ -2,6 +2,7 @@ import { Product } from "./Product";
 
 export class Batch {
 
+  public scNumber: number = 0;
   public productId: number = 0;
   public customerId: number = 0;
   public supervisitorId: number = 0;
