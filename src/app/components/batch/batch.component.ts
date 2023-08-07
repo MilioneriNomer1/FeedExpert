@@ -6,6 +6,7 @@ import {Sample} from "../../common/Sample";
 import {SampleService} from "../../services/sample.service";
 import {Product} from "../../common/Product";
 import {Customer} from "../../common/Customer";
+import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -36,8 +37,10 @@ export class BatchComponent implements OnInit {
   submitted: boolean = false;
 
 
+
   constructor(private batchService: BatchService, private messageService: MessageService, private confirmationService: ConfirmationService,
               private sampleService: SampleService) { }
+
 
   ngOnInit(): void {
     this.loading = true;
@@ -70,6 +73,16 @@ export class BatchComponent implements OnInit {
 
   hideDialog() {
     this.batchDialog = false;
+    this.submitted = false;
+  }
+
+  hideDialogSampleTable() {
+    this.sampleTableDialog = false;
+    this.submitted = false;
+  }
+
+  hideDialogSampleDetails() {
+    this.sampleDialog = false;
     this.submitted = false;
   }
 
@@ -108,7 +121,7 @@ export class BatchComponent implements OnInit {
     this.sampleDialog = true;
   }
 
-  deleteEditSample(sample: any) {
+  deleteSample(sample: any) {
 
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + sample.scNumber + '?',
@@ -127,13 +140,9 @@ export class BatchComponent implements OnInit {
   }
 
   loadSample($event: any) {
-    this.loading = true;
     debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.samples = this.selectedBatch.samples.slice(event.first,event.rows + event.first);
-      this.totalRecords = this.samples.length;
-      this.loading = false;
-    }, 1000);
+    // @ts-ignore
+    this.samples = this.selectedBatch.data.samples;
+    this.totalRecords = this.samples.length;
   }
 }

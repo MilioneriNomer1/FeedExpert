@@ -6,7 +6,7 @@ export class Batch {
   public customerId: number = 0;
   public supervisitorId: number = 0;
   public techlabId: number = 0;
-  public receivedDate: Date = new Date();
+  public receivedDate: Date = new Date(Date.toLocaleString());
   public remarks: string = "";
   public internalNotes: string = "";
   public samples: [] = [];
