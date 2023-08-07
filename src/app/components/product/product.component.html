@@ -1,41 +1,29 @@
-<p-table
-  [value]="products"
-  [lazy]="true"
-  (onLazyLoad)="loadProducts($event)"
-  dataKey="id"
-  [tableStyle]="{'min-width': '75rem'}"
-  [paginator]="true"
-  [rows]="10"
-  [totalRecords]="totalRecords"
-  [loading]="loading">
-  <ng-template pTemplate="header">
-    <tr>
-      <th pSortableColumn="name">Product Id<p-sortIcon field="productId"></p-sortIcon></th>
-      <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
-      <th pSortableColumn="name">Item Id<p-sortIcon field="itemId"></p-sortIcon></th>
-      <th pSortableColumn="name">substances<p-sortIcon field="substances"></p-sortIcon></th>
-    </tr>
-    <tr>
-      <th>
-        <p-columnFilter type="text" field="productId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="name"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="itemId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="substances"></p-columnFilter>
-      </th>
-    </tr>
+<p-toast></p-toast>
+<app-table [fields]="fields"
+           [baseOperationService]="productService"
+           (editModelEvent)="edit($event)"
+           (deleteModelEvent)="delete($event)"
+           (newModelEvent)="openNew()">
+</app-table>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="name">Name</label>
+      <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="code">Item Id</label>
+      <input type="text" pInputText id="code" [(ngModel)]="product.itemId" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.itemId">code is required.</small>
+    </div>
   </ng-template>
-  <ng-template pTemplate="body" let-product>
-    <tr>
-      <td>{{product.productId}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.itemId}}</td>
-      <td>{{product.substances}}</td>
-    </tr>
+
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
   </ng-template>
-</p-table>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
