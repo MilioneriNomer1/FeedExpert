@@ -14,7 +14,6 @@ export class CountyComponent implements OnInit {
 
   fields: FieldInfo[] = []
 
-  counties: County[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
   countyDialog: any;
@@ -51,7 +50,6 @@ export class CountyComponent implements OnInit {
   edit(county: any) {
     this.county = {...county};
     this.countyDialog = true;
-
   }
 
   delete(county: any) {
@@ -60,7 +58,7 @@ export class CountyComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.messageService.add({severity:'success', summary: 'Successful', detail: 'County Deleted', life: 3000})
+        this.messageService.add({severity:'warn', summary: 'Successful', detail: 'County Deleted', life: 3000})
       }
     });
 

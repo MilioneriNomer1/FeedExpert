@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import {User} from "../common/User";
 import {HttpClient} from "@angular/common/http";
+import {BaseOperationService} from "./baseoperation.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends BaseOperationService{
 
-  constructor(private http: HttpClient) { }
-
-  getUser() {
-    return this.http.get<any>('assets/user.json')
-      .toPromise()
-      .then(res => <User[]>res.data)
-      .then(data => { return data; });
+  constructor(private http: HttpClient) {
+    super();
   }
+
+  override page(pageNumber: number, size: number): Promise<any> {
+    return super.page(pageNumber, size, this.http, 'assets/user.json');
+  }
+
 }

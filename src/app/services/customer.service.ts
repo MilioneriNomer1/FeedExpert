@@ -17,10 +17,4 @@ export class CustomerService extends BaseOperationService{
     return super.page(pageNumber, size, this.http, 'assets/customer.json');
   }
 
-  getCustomer() {
-    return this.http.get<any>('assets/customer.json')
-      .toPromise()
-      .then(res => <Customer[]>res.data)
-      .then(data => { return data; });
-  }
 }

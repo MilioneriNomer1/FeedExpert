@@ -45,7 +45,7 @@ export class CityComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.messageService.add({severity:'success', summary: 'Successful', detail: 'City Deleted', life: 3000})
+        this.messageService.add({severity:'warn', summary: 'Successful', detail: 'City Deleted', life: 3000})
       }
     });
   }

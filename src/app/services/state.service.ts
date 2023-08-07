@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {State} from "../common/State";
+import {BaseOperationService} from "./baseoperation.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class StateService {
+export class StateService extends BaseOperationService{
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-  getState() {
-    return this.http.get<any>('assets/state.json')
-      .toPromise()
-      .then(res => <State[]>res.data)
-      .then(data => { return data; });
+  override page(pageNumber: number, size: number): Promise<any> {
+    return super.page(pageNumber, size, this.http, 'assets/state.json');
   }
 
 }

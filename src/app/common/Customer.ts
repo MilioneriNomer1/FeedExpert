@@ -8,5 +8,5 @@ export class Customer{
   public zip: string = "";
   public phone: string = "";
   public fax: string = "";
-  public city: City = new City();
+  public city: City = new City;
 }

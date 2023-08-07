@@ -16,10 +16,4 @@ export class CityService extends BaseOperationService{
     return super.page(pageNumber, size, this.http, 'assets/city.json');
   }
 
-  getCity() {
-    return this.http.get<any>('assets/city.json')
-      .toPromise()
-      .then(res => <City[]>res.data)
-      .then(data => { return data; });
-  }
 }

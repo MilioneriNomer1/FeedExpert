@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Substance} from "../../common/Substance";
 import {SubstanceService} from "../../services/substance.service";
-import {LazyLoadEvent} from "primeng/api";
+import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-substance',
@@ -10,27 +11,62 @@ import {LazyLoadEvent} from "primeng/api";
 })
 export class SubstanceComponent implements OnInit {
 
-  substances: Substance[] = [];
+  fields: FieldInfo[] = [];
+
   totalRecords: number = 0;
   loading: boolean = false;
+  substanceDialog: any;
+  substance: Substance = new Substance();
+  submitted: boolean = false;
 
-  constructor(private substanceService: SubstanceService) { }
+  constructor(public substanceService: SubstanceService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  }
 
   ngOnInit(): void {
     this.loading = true;
+    this.fields = [
+      {
+        name: 'substanceId',
+        title: 'Substance Id'
+      },
+      {
+        name: 'name',
+        title: 'Name'
+      }
+    ];
   }
 
-  loadSubstances(event: LazyLoadEvent) {
-    this.loading = true;
-    setTimeout(() => {
-      // @ts-ignore
-      this.substanceService.getSubstance({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.substances = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
+  hideDialog() {
+    this.substanceDialog = false;
+    this.submitted = false;
+  }
+
+  openNew() {
+    this.substance = new Substance();
+    this.submitted = false;
+    this.substanceDialog = true;
+  }
+
+  edit(substance: any) {
+    this.substance = {...substance};
+    this.substanceDialog = true;
+    this.submitted = false;
+  }
+  saveSubstance() {
+    this.messageService.add({severity:'success', summary: 'Successful', detail: 'Substance Updated', life: 3000});
+    this.substanceDialog = false;
+  }
+
+  delete(substance: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + substance.resultDate + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.messageService.add({severity: 'warn', summary: 'Successful', detail: 'Substance Deleted', life: 3000})
+      }
+    });
   }
 
 }
+

@@ -16,10 +16,4 @@ export class CountyService extends BaseOperationService{
     return super.page(pageNumber, size, this.http, 'assets/county.json');
   }
 
-  getCounty() {
-    return this.http.get<any>('assets/county.json')
-      .toPromise()
-      .then(res => <County[]>res.data)
-      .then(data => { return data; });
-  }
 }

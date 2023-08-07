@@ -3,6 +3,7 @@ import {Customer} from "../../common/Customer";
 import {CustomerService} from "../../services/customer.service";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 import {FieldInfo} from "../../FieldInfo";
+import {City} from "../../common/City";
 
 @Component({
   selector: 'app-customer',
@@ -12,7 +13,9 @@ import {FieldInfo} from "../../FieldInfo";
 export class CustomerComponent implements OnInit {
 
   fields: FieldInfo[] = [];
-  customers: Customer[] = [];
+  cities: City[] = [];
+  selectedCity: City = new City();
+
   totalRecords: number = 0;
   loading: boolean = false;
   customerDialog: any;
@@ -25,17 +28,17 @@ export class CustomerComponent implements OnInit {
     this.loading = true;
     this.fields = [
       {
-        name: 'customerId',
-        title: 'Customer Id'
-      },
-      {
         name: 'company',
         title: 'Company'
       },
       {
+        name: 'phone',
+        title: 'Phone'
+      },
+      {
         name: 'address',
         title: 'Address'
-      },
+      }
     ];
   }
 
@@ -57,7 +60,7 @@ export class CustomerComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Customer Deleted', life: 3000})
+        this.messageService.add({severity:'warn', summary: 'Successful', detail: 'Customer Deleted', life: 3000})
       }
     });
 

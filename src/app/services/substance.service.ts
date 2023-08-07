@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import {Substance} from "../common/Substance";
 import {HttpClient} from "@angular/common/http";
+import {BaseOperationService} from "./baseoperation.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SubstanceService {
+export class SubstanceService extends BaseOperationService{
 
-  constructor(private http: HttpClient) { }
-
-  getSubstance() {
-    return this.http.get<any>('assets/substance.json')
-      .toPromise()
-      .then(res => <Substance[]>res.data)
-      .then(data => { return data; });
+  constructor(private http: HttpClient) {
+    super();
   }
+
+  override page(pageNumber: number, size: number): Promise<any> {
+    return super.page(pageNumber, size, this.http, 'assets/substance.json');
+  }
+
 }

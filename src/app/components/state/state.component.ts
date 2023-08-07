@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {State} from "../../common/State";
 import {StateService} from "../../services/state.service";
-import {LazyLoadEvent} from "primeng/api";
+import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-state',
@@ -10,28 +11,66 @@ import {LazyLoadEvent} from "primeng/api";
 })
 export class StateComponent implements OnInit {
 
-  states: State[] = [];
+  fields: FieldInfo[] = [];
+
   totalRecords: number = 0;
   loading: boolean = false;
+  stateDialog: any;
+  state: State = new State();
+  submitted: boolean = false;
 
-  constructor(private stateService: StateService) { }
+  constructor(public stateService: StateService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  }
 
   ngOnInit(): void {
     this.loading = true;
+    this.fields = [
+      {
+        name: 'stateId',
+        title: 'State Id'
+      },
+      {
+        name: 'name',
+        title: 'Name'
+      },
+      {
+        name: 'code',
+        title: 'Code'
+      }
+    ];
   }
 
-  loadStates(event: LazyLoadEvent) {
-    this.loading = true;
-debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.stateService.getState({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.states = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
+  hideDialog() {
+    this.stateDialog = false;
+    this.submitted = false;
+  }
+
+  openNew() {
+    this.state = new State();
+    this.submitted = false;
+    this.stateDialog = true;
+  }
+
+  edit(state: any) {
+    this.state = {...state};
+    this.stateDialog = true;
+    this.submitted = false;
+  }
+  saveState() {
+    this.messageService.add({severity:'success', summary: 'Successful', detail: 'State Updated', life: 3000});
+    this.stateDialog = false;
+  }
+
+  delete(state: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + state.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.messageService.add({severity: 'warn', summary: 'Successful', detail: 'State Deleted', life: 3000})
+      }
+    });
   }
 
 }
+

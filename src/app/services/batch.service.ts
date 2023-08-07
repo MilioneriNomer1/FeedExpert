@@ -16,10 +16,4 @@ export class BatchService extends BaseOperationService{
     return super.page(pageNumber, size, this.http, 'assets/batch.json');
   }
 
-  getBatch() {
-    return this.http.get<any>('assets/batch.json')
-      .toPromise()
-      .then(res => <Batch[]>res.data)
-      .then(data => { return data; });
-  }
 }

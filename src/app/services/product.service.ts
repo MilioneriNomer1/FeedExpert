@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import {Product} from "../common/Product";
 import {HttpClient} from "@angular/common/http";
+import {BaseOperationService} from "./baseoperation.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService extends BaseOperationService{
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-  getProduct() {
-    return this.http.get<any>('assets/product.json')
-      .toPromise()
-      .then(res => <Product[]>res.data)
-      .then(data => { return data; });
+  override page(pageNumber: number, size: number): Promise<any> {
+    return super.page(pageNumber, size, this.http, 'assets/product.json');
   }
 }
