@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {County} from "../../common/County";
 import {Customer} from "../../common/Customer";
-import {CountyService} from "../../services/county.service";
 import {CustomerService} from "../../services/customer.service";
-import {LazyLoadEvent} from "primeng/api";
+import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-customer',
@@ -12,28 +11,68 @@ import {LazyLoadEvent} from "primeng/api";
 })
 export class CustomerComponent implements OnInit {
 
+  fields: FieldInfo[] = [];
   customers: Customer[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
+  customerDialog: any;
+  customer: Customer = new Customer();
+  submitted: boolean = false;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(public customerService: CustomerService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.loading = true;
+    this.fields = [
+      {
+        name: 'customerId',
+        title: 'Customer Id'
+      },
+      {
+        name: 'company',
+        title: 'Company'
+      },
+      {
+        name: 'address',
+        title: 'Address'
+      },
+    ];
   }
 
-  loadCustomers(event: LazyLoadEvent) {
-    this.loading = true;
-    debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.customerService.getCustomer({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.customers = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
+  openNew() {
+    this.customer = new Customer();
+    this.submitted = false;
+    this.customerDialog = true;
   }
 
+  edit(customer: any) {
+    this.customer = {...customer};
+    this.customerDialog = true;
+
+  }
+
+  delete(customer: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + customer.company + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Customer Deleted', life: 3000})
+      }
+    });
+
+  }
+
+  hideDialog() {
+    this.customerDialog = false;
+    this.submitted = false;
+
+  }
+
+  saveCounty() {
+    this.messageService.add({severity:'success', summary: 'Successful', detail: 'Customer Updated', life: 3000});
+    this.customerDialog = false;
+  }
 }
+
+

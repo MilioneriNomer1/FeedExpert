@@ -1,54 +1,8 @@
-<p-table
-  [value]="counties"
-  [lazy]="true"
-  (onLazyLoad)="loadCounties($event)"
-  dataKey="id"
-  [tableStyle]="{'min-width': '75rem'}"
-  [paginator]="true"
-  [rows]="10"
-  [totalRecords]="totalRecords"
-  [loading]="loading">
-  <ng-template pTemplate="header">
-    <p-toolbar>
-      <ng-template pTemplate="left">
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-      </ng-template>
-    </p-toolbar>
-    <tr>
-      <th pSortableColumn="name">County Id<p-sortIcon field="countyId"></p-sortIcon></th>
-      <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
-      <th pSortableColumn="name">Code<p-sortIcon field="code"></p-sortIcon></th>
-      <th pSortableColumn="name">State<p-sortIcon field="stateId"></p-sortIcon></th>
-    </tr>
-    <tr>
-      <th>
-        <p-columnFilter type="text" field="countyId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="name"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="code"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="stateId"></p-columnFilter>
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-county>
-    <tr>
-      <td>{{county.countyId}}</td>
-      <td>{{county.name}}</td>
-      <td>{{county.code}}</td>
-      <td>{{county.stateId}}</td>
-      <td>
-        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCounty(county)"></button>
-      </td><td>
-      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCounty(county)"></button>
-    </td>
-    </tr>
-  </ng-template>
-</p-table>
+<app-table [fields]="fields"
+           [baseOperationService]="countyService"
+           (editModelEvent)="edit($event)"
+           (deleteModelEvent)="delete($event)">
+</app-table>
 <p-dialog [(visible)]="countyDialog" [style]="{width: '450px'}" header="County Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field">
