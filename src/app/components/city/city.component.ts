@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CityService} from "../../services/city.service";
 import {City} from "../../common/City";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-city',
@@ -10,33 +11,35 @@ import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 })
 export class CityComponent implements OnInit {
 
+  fields: FieldInfo[] = [];
+
   city: City = new City;
-  cities: City[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
   cityDialog: boolean = false;
   submitted: boolean = false;
 
-  constructor(private cityService: CityService,private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(public cityService: CityService,private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.loading = true;
-  }
-  loadCities(event: LazyLoadEvent) {
-    this.loading = true;
-    debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.cityService.getCity({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.cities = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
+    this.fields = [
+      {
+        name: 'cityId',
+        title: 'City Id'
+      },
+      {
+        name: 'name',
+        title: 'Name'
+      },
+      {
+        name: 'code',
+        title: 'Code'
+      },
+    ];
   }
 
-  deleteCity(city: any) {
+  delete(city: any) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + city.name + '?',
       header: 'Confirm',
@@ -47,10 +50,10 @@ export class CityComponent implements OnInit {
     });
   }
 
-  editCity(city: any) {
+  edit(city: any) {
     this.city = {...city};
     this.cityDialog = true;
-
+    this.submitted = false;
   }
 
   openNew() {

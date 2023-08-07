@@ -1,61 +1,56 @@
-<p-table
-  [value]="customers"
-  [lazy]="true"
-  (onLazyLoad)="loadCustomers($event)"
-  dataKey="id"
-  [tableStyle]="{'min-width': '75rem'}"
-  [paginator]="true"
-  [rows]="10"
-  [totalRecords]="totalRecords"
-  [loading]="loading">
-  <ng-template pTemplate="header">
-    <tr>
-      <th pSortableColumn="name">Customer Id<p-sortIcon field="customerId"></p-sortIcon></th>
-      <th pSortableColumn="name">company<p-sortIcon field="company"></p-sortIcon></th>
-      <th pSortableColumn="name">address<p-sortIcon field="address"></p-sortIcon></th>
-      <th pSortableColumn="name">address1<p-sortIcon field="address1"></p-sortIcon></th>
-      <th pSortableColumn="name">zip<p-sortIcon field="zip"></p-sortIcon></th>
-      <th pSortableColumn="name">phone<p-sortIcon field="phone"></p-sortIcon></th>
-      <th pSortableColumn="name">fax<p-sortIcon field="fax"></p-sortIcon></th>
-      <th pSortableColumn="name">city<p-sortIcon field="cityId"></p-sortIcon></th>
-    </tr>
-    <tr>
-      <th>
-        <p-columnFilter type="text" field="customerId"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="company"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="address"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="address1"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="zip"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="phone"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="fax"></p-columnFilter>
-      </th>
-      <th>
-        <p-columnFilter type="text" field="cityId"></p-columnFilter>
-      </th>
-    </tr>
+<app-table [fields]="fields"
+           [baseOperationService]="customerService"
+           (editModelEvent)="edit($event)"
+           (deleteModelEvent)="delete($event)">
+</app-table>
+
+<p-dialog [(visible)]="customerDialog" [style]="{width: '450px'}" header="County Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="customerId">customerId</label>
+      <input type="text" pInputText id="customerId" [(ngModel)]="customer.customerId" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.customerId">customerId is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="name">Company</label>
+      <input type="text" pInputText id="name" [(ngModel)]="customer.company" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.company">Name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="code">Address</label>
+      <input type="text" pInputText id="code" [(ngModel)]="customer.address" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.address">code is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="state">Address1</label>
+      <input type="text" pInputText id="state" [(ngModel)]="customer.address1" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.address1">state is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="state">Zip</label>
+      <input type="text" pInputText id="zip" [(ngModel)]="customer.zip" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.zip">state is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="state">Phone</label>
+      <input type="text" pInputText id="phone" [(ngModel)]="customer.phone" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.phone">state is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="state">Fax</label>
+      <input type="text" pInputText id="fax" [(ngModel)]="customer.fax" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.fax">state is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="state">City Id</label>
+      <input type="text" pInputText id="cityId" [(ngModel)]="customer.city" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !customer.city">state is required.</small>
+    </div>
   </ng-template>
-  <ng-template pTemplate="body" let-customer>
-    <tr>
-      <td>{{customer.customerId}}</td>
-      <td>{{customer.company}}</td>
-      <td>{{customer.address}}</td>
-      <td>{{customer.address1}}</td>
-      <td>{{customer.zip}}</td>
-      <td>{{customer.phone}}</td>
-      <td>{{customer.fax}}</td>
-      <td>{{customer.cityId}}</td>
-    </tr>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCounty()"></button>
   </ng-template>
-</p-table>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

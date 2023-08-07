@@ -3,6 +3,7 @@ import {County} from "../../common/County";
 import {ConfirmationService, LazyLoadEvent, MessageService} from "primeng/api";
 import {CountyService} from "../../services/county.service";
 import {City} from "../../common/City";
+import {FieldInfo} from "../../FieldInfo";
 
 @Component({
   selector: 'app-county',
@@ -11,6 +12,8 @@ import {City} from "../../common/City";
 })
 export class CountyComponent implements OnInit {
 
+  fields: FieldInfo[] = []
+
   counties: County[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
@@ -18,23 +21,24 @@ export class CountyComponent implements OnInit {
   county: County = new County();
   submitted: boolean = false;
 
-  constructor(private countyService: CountyService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(public countyService: CountyService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.loading = true;
-  }
-  loadCounties(event: LazyLoadEvent) {
-    this.loading = true;
-    debugger
-    setTimeout(() => {
-      // @ts-ignore
-      this.countyService.getCounty({lazyEvent: JSON.stringify(event)}).then(res => {
-        // @ts-ignore
-        this.counties = res.slice(event.first,event.rows + event.first);
-        this.totalRecords = res.length;
-        this.loading = false;
-      })
-    }, 1000);
+    this.fields = [
+      {
+        name: 'countyId',
+        title: 'County Id'
+      },
+      {
+        name: 'name',
+        title: 'Name'
+      },
+      {
+        name: 'code',
+        title: 'Code'
+      },
+    ];
   }
 
   openNew() {
@@ -44,13 +48,13 @@ export class CountyComponent implements OnInit {
 
   }
 
-  editCounty(county: any) {
+  edit(county: any) {
     this.county = {...county};
     this.countyDialog = true;
 
   }
 
-  deleteCounty(county: any) {
+  delete(county: any) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + county.name + '?',
       header: 'Confirm',
