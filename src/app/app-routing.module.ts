@@ -9,7 +9,7 @@ import {SampleComponent} from "./components/sample/sample.component";
 import {StateComponent} from "./components/state/state.component";
 import {SubstanceComponent} from "./components/substance/substance.component";
 import {UserComponent} from "./components/user/user.component";
-
+import {LoginComponent} from "./components/login/login.component";
 
 
 const routes: Routes = [
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'state', component: StateComponent },
   { path: 'substance', component: SubstanceComponent },
   { path: 'user', component: UserComponent },
+  { path: 'logIn', component: LoginComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

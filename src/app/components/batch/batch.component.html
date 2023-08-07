@@ -1,133 +1,227 @@
 <p-toast></p-toast>
+<p-table
+  [value]="batches"
+  [lazy]="true"
+  (onLazyLoad)="loadBatches($event)"
+  dataKey="id"
+  [tableStyle]="{'min-width': '75rem'}"
+  [paginator]="true"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [loading]="loading">
+  selectionMode="single"
+  [(selection)]="selectedBatch"
+  dataKey="code"
+  (onRowSelect)="onRowSelect($event)"
+  <ng-template pTemplate="header">
 
-<app-table [fields]="fields"
-           [baseOperationService]="batchService"
-           (editModelEvent)="editBatch($event)"
-           (deleteModelEvent)="deleteBatch($event)">
+  <p-toolbar>
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+    </ng-template>
+  </p-toolbar>
 
-</app-table>
+    <tr>
+      <th pSortableColumn="name">productId<p-sortIcon field="productId"></p-sortIcon></th>
+      <th pSortableColumn="name">customerId<p-sortIcon field="customerId"></p-sortIcon></th>
+      <th pSortableColumn="name">supervisitorId<p-sortIcon field="supervisorId"></p-sortIcon></th>
+      <th pSortableColumn="name">techlabId<p-sortIcon field="techlabId"></p-sortIcon></th>
+      <th pSortableColumn="name">receivedDate<p-sortIcon field="receivedDate"></p-sortIcon></th>
+      <th pSortableColumn="name">remarks<p-sortIcon field="remarks"></p-sortIcon></th>
+      <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter type="text" field="productId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="customerId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="supervisitorId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="techlabId"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="receivedDate"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="remarks"></p-columnFilter>
+      </th>
+      <th>
+        <p-columnFilter type="text" field="internalNotes"></p-columnFilter>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-batch>
+    <tr>
+    <tr [pSelectableRow]="batch" class="p-element p-selectable-row ng-star-inserted" (click)="onRowSelect(batch)">
+      <td>{{batch.productId}}</td>
+      <td>{{batch.customerId}}</td>
+      <td>{{batch.supervisitorId}}</td>
+      <td>{{batch.techlabId}}</td>
+      <td>{{batch.receivedDate}}</td>
+      <td>{{batch.remarks}}</td>
+      <td>{{batch.internalNotes}}</td>
 
-<!--<p-table-->
-<!--  [value]="batches"-->
-<!--  [lazy]="true"-->
-<!--  (onLazyLoad)="loadBatches($event)"-->
-<!--  dataKey="id"-->
-<!--  [tableStyle]="{'min-width': '75rem'}"-->
-<!--  [paginator]="true"-->
-<!--  [rows]="10"-->
-<!--  [totalRecords]="totalRecords"-->
-<!--  [loading]="loading">-->
-<!--  <ng-template pTemplate="header">-->
-
-<!--  <p-toolbar>-->
-<!--    <ng-template pTemplate="left">-->
-<!--      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>-->
-<!--    </ng-template>-->
-<!--  </p-toolbar>-->
-
-<!--    <tr>-->
-<!--      <th pSortableColumn="name">scNumber<p-sortIcon field="scNumber"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">receivedDate<p-sortIcon field="receivedDate"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">customerId<p-sortIcon field="customerId"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">supervisitorId<p-sortIcon field="supervisorId"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">techlabId<p-sortIcon field="techlabId"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">remarks<p-sortIcon field="remarks"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">internalNotes<p-sortIcon field="internalNotes"></p-sortIcon></th>-->
-<!--      <th pSortableColumn="name">productId<p-sortIcon field="productId"></p-sortIcon></th>-->
-<!--      <th></th>-->
-<!--      <th></th>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="scNumber"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="receivedDate"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="customerId"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="supervisitorId"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="techlabId"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="remarks"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="internalNotes"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="productId"></p-columnFilter>-->
-<!--      </th>-->
-<!--      <th></th>-->
-<!--      <th></th>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--  <ng-template pTemplate="body" let-batch>-->
-<!--    <tr>-->
-<!--      <td>{{batch.scNumber}}</td>-->
-<!--      <td>{{batch.receivedDate}}</td>-->
-<!--      <td>{{batch.customerId}}</td>-->
-<!--      <td>{{batch.supervisitorId}}</td>-->
-<!--      <td>{{batch.techlabId}}</td>-->
-<!--      <td>{{batch.remarks}}</td>-->
-<!--      <td>{{batch.internalNotes}}</td>-->
-<!--      <td>{{batch.product.productId}}</td>-->
-<!--      <td>-->
-<!--        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editBatch(batch)"></button>-->
-<!--      </td><td>-->
-<!--        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBatch(batch)"></button>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--  </ng-template>-->
-<!--</p-table>-->
+      <td>
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editBatch(batch)"></button>
+      </td><td>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBatch(batch)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
 
 <p-dialog [(visible)]="batchDialog" [style]="{width: '450px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
+
     <div class="p-field">
-      <label for="scNumber">scNumber</label>
-      <input type="text" pInputText id="scNumber" [(ngModel)]="batch.scNumber" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !batch.scNumber">Name is required.</small>
+      <label for="products">Product ID</label>
+      <p-dropdown [options]="products" [(ngModel)]="selectProduct" optionLabel="id"></p-dropdown>
     </div>
     <div class="p-field">
-      <label for="receivedDate">receivedDate</label>
+      <label for="customers">Product ID</label>
+      <p-dropdown [options]="customers" [(ngModel)]="selectCustomer" optionLabel="id"></p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="receivedDate">Received Date</label>
       <input type="text" pInputText id="receivedDate" [(ngModel)]="batch.receivedDate" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.receivedDate">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="customerId">customerId</label>
-      <input type="text" pInputText id="customerId" [(ngModel)]="batch.customerId" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !batch.customerId">Name is required.</small>
-    </div>
-    <div class="p-field">
-      <label for="supervisorId">supervisorId</label>
-      <input type="text" pInputText id="supervisorId" [(ngModel)]="batch.supervisitorId" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !batch.supervisitorId">Name is required.</small>
-    </div>
-    <div class="p-field">
-      <label for="techlabId">techlabId</label>
-      <input type="text" pInputText id="techlabId" [(ngModel)]="batch.techlabId" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !batch.techlabId">Name is required.</small>
-    </div>
-    <div class="p-field">
-      <label for="remarks">remarks</label>
+      <label for="remarks">Remarks</label>
       <input type="text" pInputText id="remarks" [(ngModel)]="batch.remarks" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.remarks">Name is required.</small>
     </div>
     <div class="p-field">
-      <label for="internalNotes">internalNotes</label>
+      <label for="internalNotes">Internal Notes</label>
       <input type="text" pInputText id="internalNotes" [(ngModel)]="batch.internalNotes" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !batch.internalNotes">internalNotes is required.</small>
     </div>
   </ng-template>
-
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBatch()"></button>
   </ng-template>
 </p-dialog>
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
+
+  <p-dialog [(visible)]="sampleTableDialog" [style]="{width: '1200px'}" header="Sample Details" [modal]="true"
+            styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <p-table [value]="samples"
+                [lazy]="true"
+                (onLazyLoad)="loadSample($event)"
+                dataKey="id"
+                [tableStyle]="{'min-width': '75rem'}"
+                [paginator]="true"
+                [rows]="10"
+                [totalRecords]="totalRecords"
+                [loading]="loading">>
+        <ng-template pTemplate="header">
+
+          <p-toolbar>
+            <ng-template pTemplate="left">
+              <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNewSample()"></button>
+            </ng-template>
+          </p-toolbar>
+
+          <tr>
+            <th pSortableColumn="name">Sample ID<p-sortIcon field="sampleId"></p-sortIcon></th>
+            <th pSortableColumn="name">Result Date<p-sortIcon field="resultDate"></p-sortIcon></th>
+            <th pSortableColumn="name">Expected Value<p-sortIcon field="expectedValue"></p-sortIcon></th>
+            <th pSortableColumn="name">Actual Value<p-sortIcon field="actualValue"></p-sortIcon></th>
+            <th pSortableColumn="name">Meet Specs<p-sortIcon field="meetSpecs"></p-sortIcon></th>
+            <th pSortableColumn="name">Book<p-sortIcon field="book"></p-sortIcon></th>
+            <th pSortableColumn="name">Page<p-sortIcon field="page"></p-sortIcon></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>
+              <p-columnFilter type="text" field="sampleId"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="resultDate"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="expectedValue"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="actualValue"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="meetspecs"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="book"></p-columnFilter>
+            </th>
+            <th>
+              <p-columnFilter type="text" field="page"></p-columnFilter>
+            </th>
+
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-sample>
+          <tr>
+            <td>{{sample.sampleId}}</td>
+            <td>{{sample.resultDate}}</td>
+            <td>{{sample.expectedValue}}</td>
+            <td>{{sample.actualValue}}</td>
+            <td>{{sample.meetSpecs}}</td>
+            <td>{{sample.book}}</td>
+            <td>{{sample.page}}</td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editSample(sample)"></button>
+            </td><td>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEditSample(sample)"></button>
+          </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSample()"></button>
+    </ng-template>
+    </p-dialog>
+
+
+  <p-dialog [(visible)]="sampleDialog" [style]="{width: '600px'}" header="Sample Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="p-field">
+        <label for="resultDate">Result Date</label>
+        <input type="text" pInputText id="resultDate" [(ngModel)]="sample.resultDate" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.resultDate">Result Date is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="expectedValue">Expected Value</label>
+        <input type="text" pInputText id="expectedValue" [(ngModel)]="sample.expectedValue" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.expectedValue">Expected Value is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="actualValue">Actual Value</label>
+        <input type="text" pInputText id="actualValue" [(ngModel)]="sample.actualValue" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.actualValue">Actual Value is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="meetSpecs">MeetSpecs</label>
+        <input type="text" pInputText id="meetSpecs" [(ngModel)]="sample.meetSpecs" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !sample.meetSpecs">MeetSpecs is required.</small>
+      </div>
+    </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSample()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -19,13 +19,17 @@ import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToolbarModule} from "primeng/toolbar";
 import {RippleModule} from "primeng/ripple";
 import {ConfirmationService, MessageService, PrimeIcons} from "primeng/api";
 import { TableComponent } from './utils/table/table.component';
+import {DropdownModule} from "primeng/dropdown";
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+
 
 
 @NgModule({
@@ -40,7 +44,9 @@ import { TableComponent } from './utils/table/table.component';
     SubstanceComponent,
     UserComponent,
     SampleComponent,
-    TableComponent
+    TableComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,9 @@ import { TableComponent } from './utils/table/table.component';
     DialogModule,
     ConfirmDialogModule,
     ToolbarModule,
-    RippleModule
+    RippleModule,
+    DropdownModule,
+    ReactiveFormsModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
