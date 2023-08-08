@@ -11,12 +11,12 @@
     <div class="p-field">
       <label for="resultDate">State Id</label>
       <input type="text" pInputText id="resultDate" [(ngModel)]="state.stateId" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !state.stateId">Result Date is required.</small>
+      <small class="p-invalid" *ngIf="submitted && !state.stateId">State Id is required.</small>
     </div>
     <div class="p-field">
       <label for="expectedValue">Name</label>
       <input type="text" pInputText id="expectedValue" [(ngModel)]="state.name" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !state.name">Expected Value is required.</small>
+      <small class="p-invalid" *ngIf="submitted && !state.name">Name is required.</small>
     </div>
     <div class="p-field">
       <label for="actualValue">Code</label>
