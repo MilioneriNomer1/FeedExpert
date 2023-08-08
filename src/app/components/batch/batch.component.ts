@@ -6,7 +6,7 @@ import {Sample} from "../../common/Sample";
 import {SampleService} from "../../services/sample.service";
 import {Product} from "../../common/Product";
 import {Customer} from "../../common/Customer";
-import {DatePipe, formatDate} from "@angular/common";
+
 
 
 @Component({
@@ -141,7 +141,6 @@ export class BatchComponent implements OnInit {
   }
 
   loadSample($event: any) {
-    debugger
     // @ts-ignore
     this.samples = this.batch.samples;
     this.totalRecords = this.samples.length;

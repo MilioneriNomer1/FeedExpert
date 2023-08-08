@@ -73,14 +73,13 @@
     <div class="p-field">
       <label for="receivedDate">Received Date</label>
       <input id="receivedDate" [(ngModel)]="batch.receivedDate" required autofocus />
-      <div class="p-field p-col-12 p-md-4">
-        <p-calendar field="receivedDate" [(ngModel)]="date" inputId="basic">></p-calendar>
+      <div class="p-field p-col-12 p-md-4" field="receivedDate">
+        <p-calendar [(ngModel)]="date" inputId="basic"></p-calendar>
       </div>
     </div>
     <div class="p-field">
       <label for="remarks">Remarks</label>
       <input type="text" pInputText id="remarks" [(ngModel)]="batch.remarks" required autofocus />
-      <small class="p-invalid" *ngIf="submittedBatch && !batch.remarks">Name is required.</small>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
@@ -96,7 +95,7 @@
       <p-table [value]="samples"
                 [lazy]="true"
                 (onLazyLoad)="loadSample($event)"
-                dataKey="id"
+                dataKey="resultDate"
                 [tableStyle]="{'min-width': '75rem'}"
                 [paginator]="true"
                 [rows]="10"
