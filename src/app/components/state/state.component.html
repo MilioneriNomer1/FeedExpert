@@ -6,19 +6,19 @@
            (newModelEvent)="openNew()">
 </app-table>
 
-<p-dialog [(visible)]="stateDialog" [style]="{width: '450px'}" header="State Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="stateDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="State Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="resultDate">State Id</label>
       <input type="text" pInputText id="resultDate" [(ngModel)]="state.stateId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !state.stateId">State Id is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="expectedValue">Name</label>
       <input type="text" pInputText id="expectedValue" [(ngModel)]="state.name" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !state.name">Name is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="actualValue">Code</label>
       <input type="text" pInputText id="actualValue" [(ngModel)]="state.code" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !state.code">Actual Value is required.</small>

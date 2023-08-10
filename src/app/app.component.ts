@@ -22,7 +22,7 @@ implements OnInit{
       items: [
         {
           label: 'LogIn',
-          routerLink: '/login',
+          routerLink: '/logIn',
         },
         {
           label: 'Batch',

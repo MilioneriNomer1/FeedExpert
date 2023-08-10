@@ -6,19 +6,19 @@
            (newModelEvent)="openNew()">
 </app-table>
 
-<p-dialog [(visible)]="substanceDialog" [style]="{width: '450px'}" header="Substance Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="substanceDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="Substance Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="resultDate">Result Date</label>
       <input type="text" pInputText id="resultDate" [(ngModel)]="substance.substanceId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !substance.substanceId">Result Date is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="expectedValue">Expected Value</label>
       <input type="text" pInputText id="expectedValue" [(ngModel)]="substance.name" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !substance.name">Expected Value is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="actualValue">Actual Value</label>
       <input type="text" pInputText id="actualValue" [(ngModel)]="substance.product" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !substance.product">Actual Value is required.</small>
