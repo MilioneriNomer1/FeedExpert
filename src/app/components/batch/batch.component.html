@@ -59,25 +59,24 @@
   </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="batchDialog" [style]="{width: '450px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="batchDialog" [style]="{width: '560px',height: '760px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="productId">Product ID</label>
       <p-dropdown [options]="products" [(ngModel)]="batch.productId" id="productId" optionLabel="id"></p-dropdown>
     </div>
-    <div class="p-field">
-      <label for="customerId">Customer ID</label>
-      <p-dropdown [options]="customers" id="customerId" [(ngModel)]="batch.productId" optionLabel="id"></p-dropdown>
-    </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="receivedDate">Received Date</label>
-      <input id="receivedDate" [(ngModel)]="batch.receivedDate" required autofocus />
-      <div class="p-field p-col-12 p-md-4" field="receivedDate">
+      <div class="p-field" id="receivedDate" field="receivedDate">
         <p-calendar [(ngModel)]="date" inputId="basic"></p-calendar>
       </div>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
+      <label for="customerId">Customer ID</label>
+      <p-dropdown [options]="customers" id="customerId" [(ngModel)]="batch.productId" optionLabel="id"></p-dropdown>
+    </div>
+
+    <div class="p-field col-7">
       <label for="remarks">Remarks</label>
       <input type="text" pInputText id="remarks" [(ngModel)]="batch.remarks" required autofocus />
     </div>
@@ -90,6 +89,7 @@
 
 
   <p-dialog [(visible)]="sampleTableDialog" [style]="{width: '1400px'}" header="Samples" [modal]="true"
+            [closeOnEscape]="false"
             styleClass="p-fluid">
     <ng-template pTemplate="content">
       <p-table [value]="samples"
@@ -133,30 +133,28 @@
         </ng-template>
       </p-table>
     </ng-template>
-    <ng-template pTemplate="footer">
-      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialogSampleTable()"></button>
-    </ng-template>
-    </p-dialog>
+  </p-dialog>
 
 
-  <p-dialog [(visible)]="sampleDialog" [style]="{width: '600px'}" header="Details" [modal]="true" styleClass="p-fluid">
+  <p-dialog [(visible)]="sampleDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-      <div class="p-field">
+      <div class="p-field col-7">
         <label for="resultDate">Result Date</label>
-        <input type="text" pInputText id="resultDate" [(ngModel)]="sample.resultDate" required autofocus />
-        <small class="p-invalid" *ngIf="submittedBatch && !sample.resultDate">Result Date is required.</small>
+        <div class="p-field" id="resultDate" field="resultDate">
+          <p-calendar [(ngModel)]="sample.resultDate" inputId="basic"></p-calendar>
+        </div>
       </div>
-      <div class="p-field">
+      <div class="p-field col-7">
         <label for="expectedValue">Expected Value</label>
         <input type="text" pInputText id="expectedValue" [(ngModel)]="sample.expectedValue" required autofocus />
         <small class="p-invalid" *ngIf="submittedBatch && !sample.expectedValue">Expected Value is required.</small>
       </div>
-      <div class="p-field">
+      <div class="p-field col-7">
         <label for="actualValue">Actual Value</label>
         <input type="text" pInputText id="actualValue" [(ngModel)]="sample.actualValue" required autofocus />
         <small class="p-invalid" *ngIf="submittedBatch && !sample.actualValue">Actual Value is required.</small>
       </div>
-      <div class="p-field">
+      <div class="p-field col-7">
         <label for="meetSpecs">MeetSpecs</label>
         <input type="text" pInputText id="meetSpecs" [(ngModel)]="sample.meetSpecs" required autofocus />
         <small class="p-invalid" *ngIf="submittedBatch && !sample.meetSpecs">MeetSpecs is required.</small>
