@@ -6,24 +6,24 @@
            (newModelEvent)="openNew()">
 </app-table>
 
-<p-dialog [(visible)]="sampleDialog" [style]="{width: '600px'}" header="Sample Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="sampleDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="Sample Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="resultDate">Result Date</label>
       <input type="text" pInputText id="resultDate" [(ngModel)]="sample.resultDate" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !sample.resultDate">Result Date is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="expectedValue">Expected Value</label>
       <input type="text" pInputText id="expectedValue" [(ngModel)]="sample.expectedValue" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !sample.expectedValue">Expected Value is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="actualValue">Actual Value</label>
       <input type="text" pInputText id="actualValue" [(ngModel)]="sample.actualValue" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !sample.actualValue">Actual Value is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="meetSpecs">MeetSpecs</label>
       <input type="text" pInputText id="meetSpecs" [(ngModel)]="sample.meetSpecs" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !sample.meetSpecs">MeetSpecs is required.</small>

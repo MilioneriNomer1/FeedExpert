@@ -59,7 +59,7 @@
   </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="batchDialog" [style]="{width: '560px',height: '760px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="batchDialog"  [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="Batch Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <div class="p-field col-7">
       <label for="productId">Product ID</label>
