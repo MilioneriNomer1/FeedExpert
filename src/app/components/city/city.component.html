@@ -6,24 +6,24 @@
            (newModelEvent)="openNew()">
 </app-table>
 
-<p-dialog [(visible)]="cityDialog" [style]="{width: '450px'}" header="City Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="cityDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="City Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="cityId">City Id</label>
       <input type="text" pInputText id="cityId" [(ngModel)]="city.cityId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !city.cityId">cityId is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="name">Name</label>
       <input type="text" pInputText id="name" [(ngModel)]="city.name" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !city.name">Name is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="code">Code</label>
       <input type="text" pInputText id="code" [(ngModel)]="city.code" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !city.code">code is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="county">County</label>
       <input type="text" pInputText id="county" [(ngModel)]="city.county" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !city.county">county is required.</small>

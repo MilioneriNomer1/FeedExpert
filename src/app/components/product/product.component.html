@@ -6,14 +6,14 @@
            (newModelEvent)="openNew()">
 </app-table>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="productDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="name">Name</label>
       <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="code">Item Id</label>
       <input type="text" pInputText id="code" [(ngModel)]="product.itemId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !product.itemId">code is required.</small>

@@ -4,24 +4,24 @@
            (editModelEvent)="edit($event)"
            (deleteModelEvent)="delete($event)">
 </app-table>
-<p-dialog [(visible)]="countyDialog" [style]="{width: '450px'}" header="County Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="countyDialog" [closeOnEscape]="false" [style]="{width: '560px',height: '760px'}" header="County Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="countyId">County Id</label>
       <input type="text" pInputText id="countyId" [(ngModel)]="county.countyId" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !county.countyId">countyId is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="name">Name</label>
       <input type="text" pInputText id="name" [(ngModel)]="county.name" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !county.name">Name is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="code">Code</label>
       <input type="text" pInputText id="code" [(ngModel)]="county.code" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !county.code">code is required.</small>
     </div>
-    <div class="p-field">
+    <div class="p-field col-7">
       <label for="state">State</label>
       <input type="text" pInputText id="state" [(ngModel)]="county.state" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !county.state">state is required.</small>
