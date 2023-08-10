@@ -19,6 +19,8 @@ export class SampleComponent implements OnInit {
   sample: Sample = new Sample();
   submitted: boolean = false;
 
+  date: Date = new Date();
+
   constructor(public sampleService: SampleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
   }
 

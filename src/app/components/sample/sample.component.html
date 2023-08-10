@@ -10,8 +10,9 @@
   <ng-template pTemplate="content">
     <div class="p-field col-7">
       <label for="resultDate">Result Date</label>
-      <input type="text" pInputText id="resultDate" [(ngModel)]="sample.resultDate" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !sample.resultDate">Result Date is required.</small>
+      <div class="p-field" id="resultDate" field="receivedDate">
+        <p-calendar [(ngModel)]="date" inputId="basic"></p-calendar>
+      </div>
     </div>
     <div class="p-field col-7">
       <label for="expectedValue">Expected Value</label>
