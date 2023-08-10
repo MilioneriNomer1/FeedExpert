@@ -24,7 +24,18 @@
     </div>
     <div class="p-field col-7">
       <label for="cityId">City ID</label>
-      <p-dropdown [options]="cities" [(ngModel)]="selectedCity" id="cityId" optionLabel="id"></p-dropdown>
+      <p-dropdown
+      [options]="cities"
+      optionLabel="name"
+      [filter]="true"
+      [(ngModel)]="selectedCity"
+      [showClear]="true"
+      placeholder="Select a City"
+      [virtualScroll]="true"
+      [itemSize]="31"
+      (onShow)="loadCities()"
+    >
+    </p-dropdown>
     </div>
     <div class="p-field col-7">
       <label for="zip">Zip</label>

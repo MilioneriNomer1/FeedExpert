@@ -41,6 +41,13 @@ export class CustomerComponent implements OnInit {
       }
     ];
   }
+  loadCities(){
+    
+    this.customerService.getAllCities().then(res => {
+      console.log(res);
+      this.cities = res;
+    })
+  }
 
   openNew() {
     this.customer = new Customer();
